@@ -1,6 +1,126 @@
 {
-  "cartas": {
-    "type": "Juan,Max",
-    "Action": "caer, comer"
-  }
+  "cartas": [
+    {
+      "type": "Hechizo",
+      "name": "Congelar",
+      "action": "Oponente no puede atacar en siguiente turno",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Curar",
+      "action": "Restaura vida",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Poder supremo",
+      "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Robar carta",
+      "action": "Quita una carta al oponente",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Dinero facil",
+      "action": "Duplica cantidad de mana",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Veneno",
+      "action": "Quita vida al oponente",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Espejo",
+      "action": "Clonar carta disponible",
+      "costeMana": 150
+    },
+    {
+      "type": "Hechizo",
+      "name": "Congelar",
+      "action": "Oponente no puede atacar en siguiente turno",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Curar",
+      "action": "Restaura vida",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Veneno",
+      "action": "Quita vida al oponente",
+      "costeMana": 50
+    },
+    {
+      "type": "Esbirro",
+      "name": "Arqueras",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Barbaro",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Duendes",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Princesa",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Caballero",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Esqueletos",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Gargolas",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Gigante",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Globo",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Minero",
+      "action": "Damage",
+      "costeMana": 100
+    }
+
+
+  ]
 }
