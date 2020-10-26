@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$USER_HOME$/IdeaProjects/Cartas-maven/Cartas-maven.iml" filepath="$USER_HOME$/IdeaProjects/Cartas-maven/Cartas-maven.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Proyecto-MonsterTECG.iml" filepath="$PROJECT_DIR$/.idea/Proyecto-MonsterTECG.iml" />
+      <module fileurl="file://$PROJECT_DIR$/jackson-json/jackson-json.iml" filepath="$PROJECT_DIR$/jackson-json/jackson-json.iml" />
     </modules>
   </component>
 </project>
