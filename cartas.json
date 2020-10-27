@@ -61,6 +61,24 @@
       "costeMana": 50
     },
     {
+      "type": "Hechizo",
+      "name": "Dinero facil",
+      "action": "Duplica cantidad de mana",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Robar carta",
+      "action": "Quita una carta al oponente",
+      "costeMana": 50
+    },
+    {
+      "type": "Hechizo",
+      "name": "Poder supremo",
+      "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
+      "costeMana": 50
+    },
+    {
       "type": "Esbirro",
       "name": "Arqueras",
       "action": "Damage",
@@ -121,43 +139,106 @@
       "costeMana": 100
     },
     {
+      "type": "Esbirro",
+      "name": "Arqueras",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Caballero",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Minero",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Princesa",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Duendes",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Gigante",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
+      "type": "Esbirro",
+      "name": "Esqueletos",
+      "action": "Damage",
+      "costeMana": 100
+    },
+    {
       "type": "Secretos",
-      "name": "",
-      "action": "",
-      "costeMana": 200
+      "name": "Arcoiris",
+      "action": "Colorea botones",
+      "costeMana": 50
     },
     {
-      "type": "",
-      "name": "",
-      "action": "",
-      "costeMana":
+      "type": "Secretos",
+      "name": "Cultura general",
+      "action": "Muestra datos curiosos",
+      "costeMana": 50
     },
     {
-      "type": "",
-      "name": "",
-      "action": "",
-      "costeMana":
+      "type": "Secretos",
+      "name": "San Carlos",
+      "action": "Muestra foto del Volcan Arenal",
+      "costeMana": 50
     },
     {
-      "type": "",
-      "name": "",
-      "action": "",
-      "costeMana":
+      "type": "Secretos",
+      "name": "Turrialba",
+      "action": "Muestra foto del Volcan Turrialba",
+      "costeMana": 50
     },
     {
-      "type": "",
-      "name": "",
-      "action": "",
-      "costeMana":
+      "type": "Secretos",
+      "name": "Calculo",
+      "action": "Muestra problema de calculo",
+      "costeMana": 50
     },
     {
-      "type": "",
-      "name": "",
-      "action": "",
-      "costeMana":
+      "type": "Secretos",
+      "name": "Estrellita",
+      "action": "Agrega una estrella a la pantalla del jugador",
+      "costeMana": 50
+    },
+    {
+      "type": "Secretos",
+      "name": "Swap",
+      "action": "Carta en primer lugar pasa a estar en ultimo lugar",
+      "costeMana": 50
+    },
+    {
+      "type": "Secretos",
+      "name": "Limpieza",
+      "action": "Elimina ultima jugada en historial",
+      "costeMana": 150
+    },
+    {
+      "type": "Secretos",
+      "name": "Stop",
+      "action": "Detiene tiempo",
+      "costeMana": 150
+    },
+    {
+      "type": "Secretos",
+      "name": "Calculo",
+      "action": "Muestra problema de calculo",
+      "costeMana": 50
     }
-
-
-
   ]
 }
