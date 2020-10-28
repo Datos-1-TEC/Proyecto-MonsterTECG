@@ -3,6 +3,9 @@ package cr.ac.itcr.Jugador;
 import java.net.InetAddress;
 
 public class Anfitrion extends Jugador {
+    private int port;
+    private InetAddress IP;
+
     public int getPort() {
         return port;
     }
@@ -11,16 +14,13 @@ public class Anfitrion extends Jugador {
         this.port = port;
     }
 
-    public String getIP() {
+    public InetAddress getIP() {
         return IP;
     }
 
-    public void setIP(String IP) {
+    public void setIP(InetAddress IP) {
         this.IP = IP;
     }
-
-    private int port;
-    private String IP;
     public Anfitrion() {
 
         super();

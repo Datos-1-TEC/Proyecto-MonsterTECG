@@ -4,55 +4,63 @@ import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.net.InetAddress;
-import java.net.ServerSocket;
-import java.net.Socket;
-import java.net.URL;
-import java.util.ArrayList;
+import java.net.*;
+import java.util.HashMap;
+import java.util.Set;
 
 public class ConnectionReceiver {
     Anfitrion anfitrion;
-    String hostIP;
+    Boolean flag = true;
+    private HashMap<String, ConnectionHandler> usuarios = new HashMap<>();
 
-    public ConnectionReceiver(Anfitrion anfitrion) {
+    public ConnectionReceiver(Anfitrion anfitrion) throws IOException {
         this.anfitrion = anfitrion;
-        anfitrion.setIP(hostIPAddress());
+
         try {
-            ServerSocket incoming = new ServerSocket(anfitrion.getPort());
-            System.out.println("listening connections...");
-            Socket socket = incoming.accept();
-            DataInputStream in = new DataInputStream(socket.getInputStream());
-            String message = in.readUTF();
-            System.out.println("Invitado ha ingresado: "+ message);
-            incoming.close();
+            ServerSocket incoming = new ServerSocket(anfitrion.getPort(), 10, anfitrion.getIP());
+            System.out.println("listening connections on: " + anfitrion.getIP() + "," + anfitrion.getPort());
+            while (flag){
+                Socket socket = incoming.accept();
+                processConnection(socket);
+
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public String hostIPAddress() {
-        try
-        {
-            URL url_name = new URL("http://bot.whatismyipaddress.com");
-            BufferedReader reader = new BufferedReader(new InputStreamReader(url_name.openStream()));
-            hostIP = reader.readLine().trim();
-            if (!(hostIP.length() > 0))
-            {
-                try
-                {
-                    InetAddress localhost = InetAddress.getLocalHost();
-                    System.out.println((localhost.getHostAddress()).trim());
-                    hostIP = (localhost.getHostAddress()).trim();
-                }
-                catch(Exception e1)
-                {
-                    hostIP = "ip no encontrada";
-                }
-            }
+
+    public void processConnection(Socket socket) throws IOException {
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+        String name = in.readUTF();
+        System.out.println("Invitado ha ingresado: "+ name);
+        ConnectionHandler handler = new ConnectionHandler(socket, name, this);
+        usuarios.put(name, handler);
+        notifyClients();
+    }
+    public void processMessage (String name, String message) throws IOException {
+
+        System.out.println("Processing message: " + message );
+        String[] components = message.split("%");
+        ConnectionHandler handler = usuarios.get(components[0]);
+        if (handler != null){
+            handler.sendMessage(name + "%" + components[1]);
+        } else throw new ArrayIndexOutOfBoundsException();
+
+    }
+    public void notifyClients() throws IOException {
+
+        Set<String> keys = usuarios.keySet();
+        String message = "Anfitrion" + "%" + unifyKeys(keys);
+        for (String key: keys){
+            usuarios.get(key).sendMessage(message);
         }
-        catch (Exception e2)
-        {
-            hostIP = "ip no encontrada";
+    }
+    public String unifyKeys(Set<String> keys){
+        StringBuilder set = new StringBuilder();
+        for (String key: keys){
+            set.append(key).append(";");
         }
-        return hostIP;
+        set = new StringBuilder(set.substring(0, set.length() - 1));
+        return set.toString();
     }
 }
