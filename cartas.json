@@ -15,191 +15,191 @@
       "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas4":{
       "name": "Robar carta",
       "action": "Quita una carta al oponente",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas5":{
       "name": "Dinero facil",
       "action": "Duplica cantidad de mana",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas6":{
       "name": "Veneno",
       "action": "Quita vida al oponente",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas7":{
       "name": "Espejo",
       "action": "Clonar carta disponible",
       "costeMana": 150
     },
-    "HechizosCartas":{
+    "HechizosCartas8":{
       "name": "Congelar",
       "action": "Oponente no puede atacar en siguiente turno",
       "costeMana": 50
-    },"HechizosCartas":{
+    },"HechizosCartas9":{
       "name": "Curar",
       "action": "Restaura vida",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas10":{
       "name": "Veneno",
       "action": "Quita vida al oponente",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas11":{
       "name": "Dinero facil",
       "action": "Duplica cantidad de mana",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas12":{
       "name": "Robar carta",
       "action": "Quita una carta al oponente",
       "costeMana": 50
     },
-    "HechizosCartas":{
+    "HechizosCartas13":{
       "name": "Poder supremo",
       "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
       "costeMana": 50
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas1":{
       "name": "Arqueras",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas2":{
       "name": "Barbaro",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas3":{
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas4":{
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas5":{
       "name": "Caballero",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas6":{
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas7":{
       "name": "Gargolas",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas8":{
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas9":{
       "name": "Globo",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas10":{
       "name": "Minero",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas11":{
       "name": "Arqueras",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas12":{
       "name": "Caballero",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas13":{
       "name": "Minero",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas14":{
       "type": "Esbirro",
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas15":{
       "type": "Esbirro",
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas16":{
       "type": "Esbirro",
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100
     },
-    "EsbirrosCartas":{
+    "EsbirrosCartas17":{
       "type": "Esbirro",
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100
     },
-    "SecretosCartas":{
+    "SecretosCartas1":{
       "type": "SecretosCartas",
       "name": "Arcoiris",
       "action": "Colorea botones",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas2":{
       "name": "Cultura general",
       "action": "Muestra datos curiosos",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas3":{
       "name": "San Carlos",
       "action": "Muestra foto del Volcan Arenal",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas4":{
       "name": "Turrialba",
       "action": "Muestra foto del Volcan Turrialba",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas5":{
       "name": "Calculo",
       "action": "Muestra problema de calculo",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas6":{
       "name": "Estrellita",
       "action": "Agrega una estrella a la pantalla del jugador",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas7":{
       "name": "Swap",
       "action": "Carta en primer lugar pasa a estar en ultimo lugar",
       "costeMana": 50
     },
-    "SecretosCartas":{
+    "SecretosCartas8":{
       "name": "Limpieza",
       "action": "Elimina ultima jugada en historial",
       "costeMana": 150
     },
-    "SecretosCartas":{
+    "SecretosCartas9":{
       "name": "Stop",
       "action": "Detiene tiempo",
       "costeMana": 150
     },
-    "SecretosCartas":{
+    "SecretosCartas10":{
       "name": "Calculo",
       "action": "Muestra problema de calculo",
       "costeMana": 50
