@@ -1,6 +1,6 @@
 package cr.ac.itcr.Jugador;
 
-import cr.ac.itcr.Cartas.Deck;
+import cr.ac.itcr.Cartas.Stack.Deck;
 
 public class Jugador {
 

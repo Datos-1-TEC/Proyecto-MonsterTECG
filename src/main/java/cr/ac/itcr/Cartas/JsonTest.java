@@ -23,9 +23,18 @@ public class JsonTest {
             } finally {
                 br.close();
             }
+            //PARSE JSON TO STRING
             JsonNode node = Json.parse(json);
-            System.out.println(node.get("cartas").get("type").asText());
-            System.out.println(node.get("cartas").get("Action").asText());
+            //System.out.println(node.get("cartas").get(0));
+            //System.out.println(node.get("cartas").get("Action").asText());
+
+            HechizosCartas cartahechizo = Json.fromJson(node.get("cartas").get("HechizosCartas2"), HechizosCartas.class);
+
+            System.out.println(cartahechizo.getName());
+            System.out.println(cartahechizo.getAction());
+            System.out.println(cartahechizo.getCosteMana());
+            cartahechizo.EjecutarAccion();
+
 
         } catch(Exception e) {
             e.printStackTrace();

@@ -15,4 +15,8 @@ public class Json {
     public static JsonNode parse(String jsonSource) throws JsonProcessingException {
         return objectMapper.readTree(jsonSource);
     }
+    public static <A> A fromJson( JsonNode node, Class<A> aClass) throws JsonProcessingException {
+        return objectMapper.treeToValue(node, aClass);
+    }
+
 }

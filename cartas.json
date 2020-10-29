@@ -1,244 +1,208 @@
 {
-  "cartas": [
-    {
-      "type": "Hechizo",
+  "cartas": {
+    "HechizosCartas1": {
       "name": "Congelar",
       "action": "Oponente no puede atacar en siguiente turno",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas2": {
       "name": "Curar",
       "action": "Restaura vida",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas3":{
       "name": "Poder supremo",
       "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Robar carta",
       "action": "Quita una carta al oponente",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Dinero facil",
       "action": "Duplica cantidad de mana",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Veneno",
       "action": "Quita vida al oponente",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Espejo",
       "action": "Clonar carta disponible",
       "costeMana": 150
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Congelar",
       "action": "Oponente no puede atacar en siguiente turno",
       "costeMana": 50
-    },
-    {
-      "type": "Hechizo",
+    },"HechizosCartas":{
       "name": "Curar",
       "action": "Restaura vida",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Veneno",
       "action": "Quita vida al oponente",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Dinero facil",
       "action": "Duplica cantidad de mana",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Robar carta",
       "action": "Quita una carta al oponente",
       "costeMana": 50
     },
-    {
-      "type": "Hechizo",
+    "HechizosCartas":{
       "name": "Poder supremo",
       "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
       "costeMana": 50
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Arqueras",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Barbaro",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Caballero",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Gargolas",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Globo",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Minero",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Arqueras",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Caballero",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Esbirro",
+    "EsbirrosCartas":{
       "name": "Minero",
       "action": "Damage",
       "costeMana": 100
     },
-    {
+    "EsbirrosCartas":{
       "type": "Esbirro",
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100
     },
-    {
+    "EsbirrosCartas":{
       "type": "Esbirro",
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100
     },
-    {
+    "EsbirrosCartas":{
       "type": "Esbirro",
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100
     },
-    {
+    "EsbirrosCartas":{
       "type": "Esbirro",
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
+      "type": "SecretosCartas",
       "name": "Arcoiris",
       "action": "Colorea botones",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Cultura general",
       "action": "Muestra datos curiosos",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "San Carlos",
       "action": "Muestra foto del Volcan Arenal",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Turrialba",
       "action": "Muestra foto del Volcan Turrialba",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Calculo",
       "action": "Muestra problema de calculo",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Estrellita",
       "action": "Agrega una estrella a la pantalla del jugador",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Swap",
       "action": "Carta en primer lugar pasa a estar en ultimo lugar",
       "costeMana": 50
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Limpieza",
       "action": "Elimina ultima jugada en historial",
       "costeMana": 150
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Stop",
       "action": "Detiene tiempo",
       "costeMana": 150
     },
-    {
-      "type": "Secretos",
+    "SecretosCartas":{
       "name": "Calculo",
       "action": "Muestra problema de calculo",
       "costeMana": 50
     }
-  ]
-}
+
+}}

@@ -2,13 +2,13 @@ package cr.ac.itcr.Cartas;
 
 
 public class Carta {
-    public String getType() {
+/*    public String getType() {
         return type;
     }
 
     public void setType(String type) {
         this.type = type;
-    }
+    }*/
 
     public int getCosteMana() {
         return costeMana;
@@ -26,7 +26,7 @@ public class Carta {
         Action = action;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
@@ -34,10 +34,12 @@ public class Carta {
         this.name = name;
     }
 
-    private String type;
-    private int costeMana;
-    private String Action;
-    private String name;
+    //private String type;
+    private static String name;
+    private static String Action;
+    private static int costeMana;
+
+
 
 
 
