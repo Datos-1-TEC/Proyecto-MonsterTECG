@@ -1,8 +1,8 @@
 package cr.ac.itcr.Cartas.Stack;
 
 public class Node<T> {
-    private T value;
-    private Node next;
+    public T value;
+    public Node next;
 
     public Node() {
         this.next = null;
