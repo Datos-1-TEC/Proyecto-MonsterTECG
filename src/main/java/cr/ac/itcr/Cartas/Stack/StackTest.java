@@ -7,6 +7,7 @@ public class StackTest {
         miDeck.push(4);
         miDeck.push(5);
         miDeck.pop();
+        miDeck.pop();
         System.out.println(miDeck.peek());
     }
 }

@@ -130,31 +130,30 @@
       "costeMana": 100
     },
     "EsbirrosCartas14":{
-      "type": "Esbirro",
+
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100
     },
     "EsbirrosCartas15":{
-      "type": "Esbirro",
+
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100
     },
     "EsbirrosCartas16":{
-      "type": "Esbirro",
+
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100
     },
     "EsbirrosCartas17":{
-      "type": "Esbirro",
+
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100
     },
     "SecretosCartas1":{
-      "type": "SecretosCartas",
       "name": "Arcoiris",
       "action": "Colorea botones",
       "costeMana": 50

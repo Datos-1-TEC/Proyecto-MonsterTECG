@@ -4,7 +4,6 @@ public class SecretosCartas extends Carta{
 
     public SecretosCartas() {
         EjecutarAccion();
-        System.out.println(getAction());
     }
 
     public void EjecutarAccion(){
