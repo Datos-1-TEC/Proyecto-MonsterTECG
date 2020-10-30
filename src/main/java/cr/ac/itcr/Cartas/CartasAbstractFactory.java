@@ -1,7 +1,7 @@
 package cr.ac.itcr.Cartas;
 
 public interface CartasAbstractFactory {
-    Carta crearCarta();
+    Carta crearCarta(String cartasType);
 
 
 }
