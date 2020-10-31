@@ -20,6 +20,29 @@ public class ListaCircular<T> {
         tail.next = head;
         length ++;
     }
+    public void pushFront(T newElement){
+        Node newNode = new Node();
+        newNode.value = newElement;
+        newNode.prev = null;
+        newNode.next = null;
+        if (head == null) {
+            head = newNode;
+            newNode.next = head;
+            newNode.prev = head;
+        } else {
+            Node temp = new Node();
+            temp = head;
+            while (temp.next != head){
+                temp = temp.next;
+                temp.next = newNode;
+                newNode.prev = temp;
+                newNode.next = head;
+                head.prev = newNode;
+                head = newNode;
+            }
+        }
+    }
+
     //Insertar elementos en lista doblemente circular
     public void insertEnd(T value){
         if (head == null){

@@ -10,7 +10,7 @@ public class StackTest {
         miDeck.pop();
         System.out.println(miDeck.peek());*/
         ListaCircular<Integer> circular = new ListaCircular<>();
-        circular.addNode(777);
+        circular.pushFront(777);
 
         circular.print();
         circular.insertEnd(23);
