@@ -42,6 +42,29 @@ public class ListaCircular<T> {
             }
         }
     }
+    public void pushBack(T newElement){
+        Node newNode = new Node();
+        newNode.data = newElement;
+        newNode.prev = null;
+        newNode.next = null;
+
+        if (head == null) {
+            head = newNode;
+            newNode.next = head;
+            newNode.prev = head;
+        } else {
+            Node temp = new Node();
+            temp = head;
+            while (temp.next != head){
+                temp = temp.next;
+                temp.next = newNode;
+                newNode.next = head;
+                newNode.prev = temp;
+                head.prev = newNode;
+            }
+
+        }
+    }
 
     //Insertar elementos en lista doblemente circular
     public void insertEnd(T value){
