@@ -3,6 +3,8 @@ package cr.ac.itcr.Cartas.Stack;
 public class Node<T> {
     public T value;
     public Node next;
+    public Node prev;
+    T data;
 
     public Node() {
         this.next = null;
