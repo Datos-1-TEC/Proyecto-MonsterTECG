@@ -1,10 +1,9 @@
 package cr.ac.itcr.Cartas.Stack;
-import java.util.*;
 
 public class ListaCircular<T> {
-    private static Node start;
     private Node head = null;
     private Node tail = null;
+    private int length = 0;
 
     //Insert elements
     public void addNode(T value) {
@@ -12,52 +11,58 @@ public class ListaCircular<T> {
 
         if (head == null) {
             head = newNode;
+
         } else {
             tail.next = newNode;
         }
 
         tail = newNode;
         tail.next = head;
+        length ++;
     }
     //Insertar elementos en lista doblemente circular
     public void insertEnd(T value){
-        if (start == null){
+        if (head == null){
             Node newNode = new Node();
-            newNode.data = value;
+            newNode.value = value;
             newNode.next = newNode.prev = newNode;
-            start = newNode;
+            head = newNode;
             return;
         }
-        Node last = (start).prev;
+        Node last = (head).prev;
 
         Node newNode = new Node();
-        newNode.data = value;
+        newNode.value = value;
 
-        newNode.next = start;
-        (start).prev = newNode;
+        newNode.next = head;
+
+        (head).prev = newNode;
         newNode.prev = last;
         last.next = newNode;
+        length ++;
     }
 
     public void insertBegin(T value){
-        Node last = (start).prev;
+        Node last = head.prev;
         Node newNode = new Node();
-        newNode.data = value;
+        newNode.value = value;
 
-        newNode.next = start;
+        newNode.next = head;
         newNode.prev = last;
 
-        last.next = (start).prev = newNode;
+        last.next = newNode;
+        head.prev = last.next;
 
-        start = newNode;
+        head = newNode;
+        length ++;
     }
 
     public void insertAfter(T value1, T value2){
         Node newNode = new Node();
-        newNode.data = value1;
+        newNode.value = value1;
 
-        Node temp = start;
-        while (temp.data != value2) {
+        Node temp = head;
+        while (temp.value != value2) {
             temp = temp.next;
             Node next = temp.next;
 
@@ -65,7 +70,9 @@ public class ListaCircular<T> {
             newNode.prev = temp;
             newNode.next = next;
             next.prev = newNode;
+
         }
+        length ++;
     }
 
 
@@ -84,11 +91,15 @@ public class ListaCircular<T> {
             return false;
         }
     }
-
-
-
-
-
-
+    public void print(){
+        Node<T> current = this.head;
+        int cont = 0;
+        while (cont < length){
+            System.out.printf("|%s|-> ", current.getValue());
+            current = current.getNext();
+            cont++;
+        }
+        System.out.println();
+    }
 
 }

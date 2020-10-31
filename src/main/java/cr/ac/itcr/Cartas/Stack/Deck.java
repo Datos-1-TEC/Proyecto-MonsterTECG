@@ -33,7 +33,7 @@ public class Deck<T> {
         Node<T> temp ;
 
         if(top == null){
-            System.out.println("stack underflow");
+            return null;
         }
         temp = top;
         top = top.getNext();
