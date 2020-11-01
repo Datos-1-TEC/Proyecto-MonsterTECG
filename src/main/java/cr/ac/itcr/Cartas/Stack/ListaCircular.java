@@ -6,40 +6,55 @@ public class ListaCircular<T> {
     private int length = 0;
 
     //Insert elements
-    public void addNode(T value) {
-        Node newNode = new Node(value);
 
-        if (head == null) {
-            head = newNode;
-
-        } else {
-            tail.next = newNode;
-        }
-
-        tail = newNode;
-        tail.next = head;
-        length ++;
-    }
     public void pushFront(T newElement){
         Node newNode = new Node();
         newNode.value = newElement;
-        newNode.prev = null;
-        newNode.next = null;
         if (head == null) {
             head = newNode;
-            newNode.next = head;
-            newNode.prev = head;
+            head.next = head;
+            newNode.prev = tail;
+            tail = newNode;
+            length ++;
         }
-        Node temp = new Node();
-        temp = head;
-        while (temp.next != head){
-            temp = temp.next;
-            temp.next = newNode;
-            newNode.prev = temp;
-            newNode.next = head;
-            head.prev = newNode;
-            head = newNode;
-        }
+        tail.next = newNode;
+        newNode.next = head;
+        newNode.prev = tail;
+        tail = newNode;
+        head.prev = tail;
+        length ++;
+    }
+    public void deleteNode(T element){
+        Node<T> current = new Node<T>();
+        Node<T> predecessor = new Node<T>();
+        current = head;
+        predecessor = tail;
+        do{
+            if (current.value == element){
+                if(current == head){
+                    head = head.next;
+                    tail.next = head;
+                    head.prev = tail;
+                    length --;
+                }
+                else if (current == tail){
+                    tail = predecessor;
+                    head.prev = tail;
+                    tail.next = head;
+                    length --;
+
+                }
+                else {
+                    predecessor.next = current.next;
+                    current.next.prev = predecessor;
+                    length --;
+                }
+            }
+            predecessor = current;
+            current = current.next;
+
+        }while (current != head);
+
     }
     public void pushBack(T newElement){
         Node newNode = new Node();
@@ -64,23 +79,7 @@ public class ListaCircular<T> {
 
         }
     }
-    public void popFront() {
-        if (this.head != null) {
-            if (this.head.next == this.head) {
-                this.head = null;
-            } else {
-                Node temp = this.head;
-                Node firstNode = this.head;
-                while (temp.next != this.head) {
-                    temp = temp.next;
-                }
-                this.head = this.head.next;
-                this.head.prev = temp;
-                temp.next = this.head;
-                firstNode = null;
-            }
-        }
-    }
+
     public void popBack() {
         if (this.head != null) {
             if (this.head.next == this.head) {
@@ -174,7 +173,7 @@ public class ListaCircular<T> {
         Node<T> current = this.head;
         int cont = 0;
         while (cont < length){
-            System.out.printf("|%s|-> ", current.getValue());
+            System.out.printf("<-|%s|-> ", current.getValue());
             current = current.getNext();
             cont++;
         }
