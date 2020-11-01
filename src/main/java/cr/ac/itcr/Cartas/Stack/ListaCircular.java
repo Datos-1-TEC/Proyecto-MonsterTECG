@@ -29,17 +29,16 @@ public class ListaCircular<T> {
             head = newNode;
             newNode.next = head;
             newNode.prev = head;
-        } else {
-            Node temp = new Node();
-            temp = head;
-            while (temp.next != head){
-                temp = temp.next;
-                temp.next = newNode;
-                newNode.prev = temp;
-                newNode.next = head;
-                head.prev = newNode;
-                head = newNode;
-            }
+        }
+        Node temp = new Node();
+        temp = head;
+        while (temp.next != head){
+            temp = temp.next;
+            temp.next = newNode;
+            newNode.prev = temp;
+            newNode.next = head;
+            head.prev = newNode;
+            head = newNode;
         }
     }
     public void pushBack(T newElement){

@@ -11,6 +11,11 @@ public class StackTest {
         System.out.println(miDeck.peek());*/
         ListaCircular<Integer> circular = new ListaCircular<>();
         circular.pushFront(777);
+        circular.pushFront(555);
+        circular.pushFront(89);
+        circular.pushFront(547);
+        circular.pushFront(34);
+        circular.pushFront(65);
 
         circular.print();
         circular.insertEnd(23);
