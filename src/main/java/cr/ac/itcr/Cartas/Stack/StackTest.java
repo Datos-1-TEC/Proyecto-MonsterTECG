@@ -18,7 +18,7 @@ public class StackTest {
         circular.pushFront(65);
 
         circular.print();
-        circular.deleteNode(777);
+        circular.deleteNode(65);
         circular.print();
 
 

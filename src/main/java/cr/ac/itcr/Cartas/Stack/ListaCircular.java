@@ -30,7 +30,7 @@ public class ListaCircular<T> {
         current = head;
         predecessor = tail;
         do{
-            if (current.value == element){
+            if (current.value.equals(element)){
                 if(current == head){
                     head = head.next;
                     tail.next = head;
