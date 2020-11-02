@@ -1,7 +1,4 @@
 import cr.ac.itcr.Jugador.Anfitrion;
-import cr.ac.itcr.Jugador.ConnectionReceiver;
-import cr.ac.itcr.Jugador.ConnectionRequest;
-import cr.ac.itcr.UIJugador.Window;
 
 import javax.swing.*;
 
