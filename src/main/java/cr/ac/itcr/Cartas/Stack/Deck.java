@@ -4,6 +4,12 @@ package cr.ac.itcr.Cartas.Stack;
 public class Deck<T> {
     private Node<T> top;
 
+    public int getSize() {
+        return size;
+    }
+
+    private int size = 0;
+
     public Deck(){
         this.top = null;
     }
@@ -13,10 +19,12 @@ public class Deck<T> {
     public void push(T element){
         if (this.isEmpty()) {
             this.top = new Node<>(element);
+            this.size ++;
         } else {
             Node<T> ref = new Node<>(element);
             ref.setNext(this.top);
             top = ref;
+            this.size ++;
         }
         }
 
@@ -37,6 +45,7 @@ public class Deck<T> {
         }
         temp = top;
         top = top.getNext();
+        this.size --;
         return temp.getValue();
     }
 

@@ -1,43 +1,47 @@
 package cr.ac.itcr.Cartas;
+import java.io.Serializable;
 
+public class Carta implements Serializable {
+    private  String name;
+    private  String Action;
+    private  int costeMana;
 
-public class Carta {
-/*    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }*/
-
-    public int getCosteMana() {
-        return costeMana;
-    }
-
-    public void setCosteMana(int costeMana) {
-        this.costeMana = costeMana;
-    }
-
-    public String getAction() {
-        return Action;
-    }
-
-    public void setAction(String action) {
-        Action = action;
-    }
-
-    public static String getName() {
-        return name;
+    public  String getName() {
+        return this.name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
+    public String getAction() {
+        return this.Action;
+    }
+
+    public void setAction(String action) {
+        this.Action = action;
+    }
+
+    public int getCosteMana() {
+        return this.costeMana;
+    }
+
+    public void setCosteMana(int costeMana) {
+        this.costeMana = costeMana;
+    }
+
+    public Carta() {
+        getName();
+        getAction();
+        getCosteMana();
+    }
+
+
+
+
+
     //private String type;
-    private static String name;
-    private static String Action;
-    private static int costeMana;
+
 
 
 

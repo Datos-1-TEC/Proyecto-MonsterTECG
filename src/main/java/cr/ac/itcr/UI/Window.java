@@ -1,4 +1,4 @@
-package cr.ac.itcr.UIJugador;
+package cr.ac.itcr.UI;
 
 import cr.ac.itcr.Jugador.Anfitrion;
 import cr.ac.itcr.Jugador.ConnectionReceiver;
@@ -20,6 +20,17 @@ public class Window extends JFrame {
     JTextField addIP = new JTextField();
     JTextField addPort = new JTextField();
     JButton loginAnfitrion = new JButton("Registrar");
+
+    public Anfitrion getAnfitrionPartida() {
+        return anfitrionPartida;
+    }
+
+    public Invitado getInvitadoPartida() {
+        return invitadoPartida;
+    }
+
+    Anfitrion anfitrionPartida = new Anfitrion();
+    Invitado invitadoPartida;
 
     public Window() throws HeadlessException {
         settingRole();
@@ -95,21 +106,20 @@ public class Window extends JFrame {
         loginAnfitrion.setBackground(Color.orange);
 
         loginAnfitrion.addActionListener(e -> {
-            Anfitrion anfitrion = new Anfitrion();
+
             try {
-                anfitrion.setPort(Integer.parseInt(addPort.getText()));
+                this.anfitrionPartida.setPort(Integer.parseInt(addPort.getText()));
                 InetAddress hostIP = InetAddress.getByName(addIP.getText());
-                anfitrion.setIP(hostIP);
+                this.anfitrionPartida.setIP(hostIP);
                 setVisible(false);
 
-                ConnectionReceiver receiver = new ConnectionReceiver(anfitrion);
+                ConnectionReceiver receiver = new ConnectionReceiver(anfitrionPartida);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
             System.out.println("IP de partida: "+ addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
         });
         add(loginAnfitrion);
-
     }
 
     public void setLoginInvitado() {
@@ -120,9 +130,12 @@ public class Window extends JFrame {
             String serverIP = addIP.getText();
             int serverPort = Integer.parseInt(addPort.getText());
             try {
-                Invitado invitado = new Invitado(serverIP, serverPort);
+                this.invitadoPartida = new Invitado(serverIP, serverPort);
                 //setVisible(false)
-                ConnectionRequest request = new ConnectionRequest(invitado.getServerIP(), invitado.getServerPort());
+                ConnectionRequest request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort());
+                DatosPartida datosPartida = new DatosPartida(this.anfitrionPartida, this.invitadoPartida);
+                datosPartida.cartasAnfitrion();
+                datosPartida.cartasInvitado();
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -131,6 +144,7 @@ public class Window extends JFrame {
         add(loginAnfitrion);
 
     }
+
     public static void main (String[] args){
         Window window = new Window();
     }

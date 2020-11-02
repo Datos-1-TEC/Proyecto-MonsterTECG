@@ -1,8 +1,11 @@
 package cr.ac.itcr.Jugador;
 
+
 import java.io.IOException;
 
-public class Invitado {
+public class Invitado extends Jugador {
+
+
     public String getServerIP() {
         return serverIP;
     }
@@ -27,4 +30,5 @@ public class Invitado {
         this.serverPort = serverPort;
 
     }
+
 }

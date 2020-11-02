@@ -10,40 +10,31 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class AgregarDeck {
 
-    public  CartasFactory cf = new CartasFactory();
-    public  Deck miDeck = new Deck();
+    private Deck<Carta> miDeck = new Deck<>();
     public ThreadLocalRandom random = ThreadLocalRandom.current();
 
     public AgregarDeck() {
+    }
 
+    public Deck<Carta> generateDeck() {
         try {
-            String json;
-            // Read the file
-            BufferedReader br = new BufferedReader(new FileReader("cartas.json"));
-            try {
-                StringBuilder sb = new StringBuilder();
-                String line = br.readLine();
-                while (line != null) {
-                    sb.append(line);
-                    sb.append(System.lineSeparator());
-                    line = br.readLine();
-                }
-                json = sb.toString();
-            } finally {
-                br.close();
-            }
+            Json cardsreader = new Json();
+            String json = new String();
+
             //PARSE JSON TO STRING
-            JsonNode node = Json.parse(json);
+            JsonNode node = Json.parse(cardsreader.jsonReader(json));
             AddtoDeck(6, 17,"EsbirrosCartas", node);
             AddtoDeck(5, 13,"HechizosCartas", node);
-            AddtoDeck(5, 10,"EsbirrosCartas", node);
+            AddtoDeck(5, 10,"SecretosCartas", node);
+            System.out.println("Deck jugador: ");
 
 
         } catch(Exception e) {
             e.printStackTrace();
         }
-
+        return miDeck;
     }
+
     public void AddtoDeck(int max, int indiceCarta, String tipoCarta, JsonNode node) throws JsonProcessingException {
         int contador = 0;
 
@@ -53,11 +44,10 @@ public class AgregarDeck {
             String nombre = tipoCarta + contadorString;
             Carta carta = Json.fromJson(node.get("cartas").get(nombre), Carta.class);
             miDeck.push(carta);
-            Carta nuevaCarta = (Carta) miDeck.peek();
-            System.out.println(nuevaCarta.getName());
-            System.out.println(nuevaCarta.getCosteMana());
+            System.out.println("agregando carta: " + contador);
             contador++;
         }
     }
+
 
 }
