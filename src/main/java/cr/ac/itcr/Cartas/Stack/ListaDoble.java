@@ -20,6 +20,25 @@ public class ListaDoble<T> {
             tail = newNode;
         }
     }
+    public void eliminarNodo(T Element){
+        Node current = new Node();
+        Node predecessor = new Node();
+        current = head;
+        predecessor = tail;
+        while (current != null){
+            if (current.value == Element){
+                if (current == head){
+                    head = head.next;
+                    head.prev = null;
+                }else {
+                    predecessor.next = current.next;
+                    current.next.prev = current.prev;
+                }
+            }
+            predecessor = current;
+            current = current.next;
+        }
+    }
     public boolean buscarNodo(T searchValue){
         Node current = new Node();
         current = head;
