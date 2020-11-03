@@ -9,6 +9,7 @@ public class StackTest {
         miDeck.pop();
         miDeck.pop();
         System.out.println(miDeck.peek());*/
+        /*
         ListaCircular<Integer> circular = new ListaCircular<>();
         circular.pushFront(777);
         circular.pushFront(555);
@@ -20,6 +21,17 @@ public class StackTest {
         circular.print();
         circular.deleteNode(65);
         circular.print();
+
+         */
+        ListaDoble<Integer> doble = new ListaDoble<>();
+        doble.ingresarNodo(333);
+        doble.ingresarNodo(65);
+        doble.ingresarNodo(23);
+        doble.ingresarNodo(34);
+        doble.print();
+
+        doble.eliminarNodo(23);
+        doble.print();
 
 
 

@@ -4,6 +4,12 @@ public class ListaDoble<T> {
     private Node head = null;
     private Node tail = null;
 
+    public int getLength() {
+        return length;
+    }
+
+    private int length = -1;
+
     public void ingresarNodo(T newElement){
         Node newNode = new Node();
         newNode.value = newElement;
@@ -13,11 +19,13 @@ public class ListaDoble<T> {
             head.next = null;
             head.prev = null;
             tail = head;
+            length ++;
         } else {
             tail.next = newNode;
             newNode.prev = tail;
             newNode.next = null;
             tail = newNode;
+            length ++;
         }
     }
     public void eliminarNodo(T Element){
@@ -30,9 +38,11 @@ public class ListaDoble<T> {
                 if (current == head){
                     head = head.next;
                     head.prev = null;
+                    length --;
                 }else {
                     predecessor.next = current.next;
                     current.next.prev = current.prev;
+                    length --;
                 }
             }
             predecessor = current;
@@ -49,5 +59,15 @@ public class ListaDoble<T> {
             current = current.next;
         }
         return false;
+    }
+    public void print(){
+        Node<T> current = this.head;
+        int cont = 0;
+        while (cont <= length){
+            System.out.printf("<-|%s|-> ", current.getValue());
+            current = current.getNext();
+            cont++;
+        }
+        System.out.println();
     }
 }
