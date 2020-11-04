@@ -23,6 +23,7 @@ public class Json {
         return objectMapper.readTree(jsonSource);
     }
     public static JsonNode toJson (Object o){ return objectMapper.valueToTree(o);}
+
     public static <A> A fromJson( JsonNode node, Class<A> aClass) throws JsonProcessingException {
         return objectMapper.treeToValue(node, aClass);
     }
@@ -33,9 +34,9 @@ public class Json {
         }
         return objectWriter.writeValueAsString(node);
     }
-    public String jsonReader (String json) throws IOException {
+    public String jsonReader (String json, String fileName) throws IOException {
         // Read the file
-        BufferedReader br = new BufferedReader(new FileReader("cartas.json"));
+        BufferedReader br = new BufferedReader(new FileReader(fileName));
         try {
             StringBuilder sb = new StringBuilder();
             String line = br.readLine();

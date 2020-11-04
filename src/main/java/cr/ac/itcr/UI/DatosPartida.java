@@ -1,6 +1,7 @@
 package cr.ac.itcr.UI;
 
 import cr.ac.itcr.Cartas.AgregarDeck;
+import cr.ac.itcr.Cartas.Carta;
 import cr.ac.itcr.Cartas.Stack.ManoCartas;
 import cr.ac.itcr.Jugador.Anfitrion;
 import cr.ac.itcr.Jugador.Invitado;
@@ -18,18 +19,27 @@ public class DatosPartida {
         this.anfitrion = anfitrion;
         this.invitado = invitado;
     }
-    public void cartasInvitado() throws IOException {
-        cartasJugador(this.invitado);
+    public String cartasInvitado() throws IOException {
+        return cartasJugador(this.invitado, "");
     }
-    public void cartasAnfitrion() throws IOException {
-        cartasJugador(this.anfitrion);
+
+    public void cartasAnfitrion(String cartasNombre) throws IOException {
+        cartasJugador(this.anfitrion, cartasNombre);
     }
-    public void cartasJugador(Jugador jugador) throws IOException {
+    public String cartasJugador(Jugador jugador, String cartasNombre) throws IOException {
         AgregarDeck nuevoDeck =  new AgregarDeck();
-        ManoCartas nuevaMano = new ManoCartas();
-        nuevaMano.agregarCartas();
-        jugador.setMiDeck(nuevoDeck.generateDeck());
-        jugador.setManoCartas(nuevaMano);
+        if(cartasNombre == ""){
+            ManoCartas nuevaMano = new ManoCartas();
+            nuevaMano.agregarCartas();
+            jugador.setManoCartas(nuevaMano);
+            jugador.setMiDeck(nuevoDeck.generateDeck());
+            return nuevoDeck.cartasNombre;
+        }
+        else {
+            jugador.setMiDeck(nuevoDeck.generateDeck(cartasNombre));
+            return "";
+        }
+
     }
 
 }

@@ -30,13 +30,13 @@ public class ConnectionHandler {
         });
         thread.start();
     }
-    public void sendMessage(String message) throws IOException {
+    public void sendMessage(String message)  {
 
         try{
             out.writeUTF(message);
             out.flush();
         }catch (IOException e){
-            throw new IOException(e);
+            e.printStackTrace();
         }
 
     }

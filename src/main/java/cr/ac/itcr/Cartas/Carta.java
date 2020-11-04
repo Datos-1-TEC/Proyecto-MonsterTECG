@@ -2,9 +2,20 @@ package cr.ac.itcr.Cartas;
 import java.io.Serializable;
 
 public class Carta implements Serializable {
+
+    private String type;
     private  String name;
     private  String Action;
     private  int costeMana;
+    private String imagePath;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
 
     public  String getName() {
         return this.name;
@@ -29,8 +40,12 @@ public class Carta implements Serializable {
     public void setCosteMana(int costeMana) {
         this.costeMana = costeMana;
     }
+    public String getImagePath() {
+        return imagePath;
+    }
 
     public Carta() {
+        getType();
         getName();
         getAction();
         getCosteMana();

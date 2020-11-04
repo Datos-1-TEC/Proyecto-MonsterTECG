@@ -17,7 +17,7 @@ public class ConnectionReceiver {
         this.anfitrion = anfitrion;
 
         try {
-            ServerSocket incoming = new ServerSocket(anfitrion.getPort(), 10, anfitrion.getIP());
+            ServerSocket incoming = new ServerSocket(anfitrion.getPort(), 1, anfitrion.getIP());
             System.out.println("listening connections on: " + anfitrion.getIP() + "," + anfitrion.getPort());
             while (flag){
                 Socket socket = incoming.accept();
@@ -31,10 +31,11 @@ public class ConnectionReceiver {
 
     public void processConnection(Socket socket) throws IOException {
         DataInputStream in = new DataInputStream(socket.getInputStream());
-        String name = in.readUTF();
-        System.out.println("Invitado ha ingresado: "+ name);
-        ConnectionHandler handler = new ConnectionHandler(socket, name, this);
-        usuarios.put(name, handler);
+
+        String incomingCard = in.readUTF();
+        System.out.println("Invitado ha ingresado: "+ incomingCard);
+        ConnectionHandler handler = new ConnectionHandler(socket, incomingCard, this);
+        usuarios.put(incomingCard, handler);
         notifyClients();
     }
     public void processMessage (String name, String message) throws IOException {

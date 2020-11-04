@@ -1,17 +1,24 @@
 package cr.ac.itcr.Jugador;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import cr.ac.itcr.Cartas.AgregarDeck;
 import cr.ac.itcr.Cartas.Carta;
+import cr.ac.itcr.Cartas.Json;
 import cr.ac.itcr.Cartas.Stack.Deck;
 import cr.ac.itcr.Cartas.Stack.ManoCartas;
+
+import java.io.File;
+import java.io.IOException;
 
 public class Jugador {
 
     private String Rol;
-    public int mana = 200;
-    public int vida = 1000;
-    public Deck<Carta> miDeck = new Deck<>();
-
+    private int mana = 200;
+    private int vida = 1000;
+    private boolean onGame = false;
+    private Deck<Carta> miDeck = new Deck<>();
+    private ManoCartas manoCartas = new ManoCartas();
     public ManoCartas getManoCartas() {
         return manoCartas;
     }
@@ -20,7 +27,7 @@ public class Jugador {
         this.manoCartas = manoCartas;
     }
 
-    public ManoCartas manoCartas = new ManoCartas();
+
     public String getRol() {return Rol; }
 
     public void setRol(String rol) { Rol = rol; }
@@ -35,9 +42,16 @@ public class Jugador {
 
     public Deck getMiDeck() { return miDeck; }
 
-    public void setMiDeck(Deck miDeck) {
+    public void setMiDeck(Deck miDeck) {this.miDeck = miDeck;}
 
-        this.miDeck = miDeck;}
+    public String drawCard(int position) throws IOException {
+        Carta drawed = getManoCartas().getCartaListaCircular().getElementAt(position);
+        ObjectMapper objectMapper = new ObjectMapper();
+        JsonNode cartaNode = Json.toJson(drawed);
+        objectMapper.writeValue(new File("src/carta.json"),drawed);
+        String card = Json.generateString(cartaNode, true);
+        return card;
+    }
 
 }
 

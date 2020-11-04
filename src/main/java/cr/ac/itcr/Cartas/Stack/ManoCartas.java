@@ -25,7 +25,7 @@ public class ManoCartas {
     public ListaCircular<Carta> agregarCartas() throws IOException {
         String json = new String();
         Json cardsReader = new Json();
-        JsonNode node = Json.parse(cardsReader.jsonReader(json));
+        JsonNode node = Json.parse(cardsReader.jsonReader(json, "cartas.json"));
         selectFromJson(2, 17, "EsbirrosCartas", node);
         selectFromJson(1, 10, "SecretosCartas", node);
         selectFromJson(1, 13, "HechizosCartas", node);

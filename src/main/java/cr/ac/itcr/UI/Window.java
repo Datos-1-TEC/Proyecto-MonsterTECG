@@ -20,6 +20,8 @@ public class Window extends JFrame {
     JTextField addIP = new JTextField();
     JTextField addPort = new JTextField();
     JButton loginAnfitrion = new JButton("Registrar");
+    Anfitrion anfitrionPartida = new Anfitrion();
+    Invitado invitadoPartida;
 
     public Anfitrion getAnfitrionPartida() {
         return anfitrionPartida;
@@ -29,8 +31,7 @@ public class Window extends JFrame {
         return invitadoPartida;
     }
 
-    Anfitrion anfitrionPartida = new Anfitrion();
-    Invitado invitadoPartida;
+
 
     public Window() throws HeadlessException {
         settingRole();
@@ -125,23 +126,25 @@ public class Window extends JFrame {
     public void setLoginInvitado() {
         loginAnfitrion.setBounds(100, 300, 90, 30);
         loginAnfitrion.setBackground(Color.orange);
-
+        add(loginAnfitrion);
         loginAnfitrion.addActionListener(e -> {
             String serverIP = addIP.getText();
             int serverPort = Integer.parseInt(addPort.getText());
             try {
                 this.invitadoPartida = new Invitado(serverIP, serverPort);
                 //setVisible(false)
-                ConnectionRequest request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort());
                 DatosPartida datosPartida = new DatosPartida(this.anfitrionPartida, this.invitadoPartida);
-                datosPartida.cartasAnfitrion();
-                datosPartida.cartasInvitado();
+                String cartasNombre = datosPartida.cartasInvitado();
+                ConnectionRequest request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
+                request.getOut().writeUTF(cartasNombre);
+                request.getOut().flush();
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
             System.out.println("IP de partida: " + addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
         });
-        add(loginAnfitrion);
+
 
     }
 

@@ -17,31 +17,34 @@ public class JsonTest {
 
     public static void main(String args[]) {
         try{
-            String json = new String();
-            Json cardsReader = new Json();
-            //PARSE JSON TO STRING
-            JsonNode node = Json.parse(cardsReader.jsonReader(json));
-            //System.out.println(node.get("cartas").get(0));
-            //System.out.println(node.get("cartas").get("Action").asText());
-/*            //Object instantiation
+
+
+           //Object instantiation
             ObjectMapper objectMapper = new ObjectMapper();
+
             HechizosCartas nuevaCarta = new HechizosCartas();
             nuevaCarta.setName("Congelar");
-            nuevaCarta.setCosteMana(50);
+            nuevaCarta.setCosteMana(70);
             nuevaCarta.setAction("Pasa 3 turnos");
-
-
+            String json = new String();
+            Json cardsReader = new Json();
+//PARSE JSON TO STRING
+            JsonNode node = Json.parse(cardsReader.jsonReader(json, "src/carta.json"));
+            System.out.println(node.get("costeMana").asText());
+/*
             //Object to Json
             JsonNode cartaNode = Json.toJson(nuevaCarta);
             System.out.println(Json.generateString(cartaNode, true));
             objectMapper.writeValue(new File("src/carta.json"),nuevaCarta);
-*/
-            Invitado invitado = new Invitado("192.168.8.100", 9090);
+
+
+          Invitado invitado = new Invitado("192.168.8.100", 9090);
             AgregarDeck nuevoDeck =  new AgregarDeck();
             ManoCartas nuevaMano = new ManoCartas();
             nuevaMano.agregarCartas();
             invitado.setMiDeck(nuevoDeck.generateDeck());
-            invitado.setManoCartas(nuevaMano);
+            invitado.setManoCartas(nuevaMano);*/
+
 
 
         } catch(Exception e) {

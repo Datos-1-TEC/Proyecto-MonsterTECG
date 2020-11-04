@@ -8,7 +8,7 @@ public class ListaDoble<T> {
         return length;
     }
 
-    private int length = -1;
+    private int length = 0;
 
     public void ingresarNodo(T newElement){
         Node newNode = new Node();
@@ -63,7 +63,7 @@ public class ListaDoble<T> {
     public void print(){
         Node<T> current = this.head;
         int cont = 0;
-        while (cont <= length){
+        while (cont < length){
             System.out.printf("<-|%s|-> ", current.getValue());
             current = current.getNext();
             cont++;

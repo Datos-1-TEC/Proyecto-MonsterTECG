@@ -61,6 +61,21 @@ public class ListaCircular<T> {
         }while (current != head);
 
     }
+    public T getElementAt(int position){
+        Node<T> current = this.head;
+        Node<T> prev = null;
+        while (position > 0){
+            prev = current;
+            current = current.getNext();
+            if (current == null){
+                break;
+            }
+            position --;
+        }
+        return current.getValue();
+
+
+    }
 
 
     public boolean containsNode(T searchValue) {
@@ -88,5 +103,7 @@ public class ListaCircular<T> {
         }
         System.out.println();
     }
+
+
 
 }
