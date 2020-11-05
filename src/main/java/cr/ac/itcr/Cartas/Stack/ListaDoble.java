@@ -60,6 +60,21 @@ public class ListaDoble<T> {
         }
         return false;
     }
+    public T getElementAt(int position){
+        Node<T> current = this.head;
+        Node<T> prev = null;
+        while (position > 0){
+            prev = current;
+            current = current.getNext();
+            if (current == null){
+                break;
+            }
+            position --;
+        }
+        return current.getValue();
+
+
+    }
     public void print(){
         Node<T> current = this.head;
         int cont = 0;

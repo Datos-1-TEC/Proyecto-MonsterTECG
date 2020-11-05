@@ -1,5 +1,7 @@
 package cr.ac.itcr.UI;
 
+import cr.ac.itcr.Cartas.AgregarDeck;
+import cr.ac.itcr.Cartas.Stack.ManoCartas;
 import cr.ac.itcr.Jugador.Anfitrion;
 import cr.ac.itcr.Jugador.ConnectionReceiver;
 import cr.ac.itcr.Jugador.ConnectionRequest;
@@ -109,13 +111,17 @@ public class Window extends JFrame {
         loginAnfitrion.addActionListener(e -> {
 
             try {
+                AgregarDeck nuevoDeck =  new AgregarDeck();
+                ManoCartas nuevaMano = new ManoCartas();
+                nuevaMano.agregarCartas();
+                this.anfitrionPartida.setManoCartas(nuevaMano);
+                this.anfitrionPartida.setMiDeck(nuevoDeck.generateDeck());
                 this.anfitrionPartida.setPort(Integer.parseInt(addPort.getText()));
                 InetAddress hostIP = InetAddress.getByName(addIP.getText());
                 this.anfitrionPartida.setIP(hostIP);
                 setVisible(false);
-
-                ConnectionReceiver receiver = new ConnectionReceiver(anfitrionPartida);
-                gameWindow gw = new gameWindow(this.anfitrionPartida);
+                ConnectionReceiver receiver = new ConnectionReceiver(this.anfitrionPartida);
+                //gameWindow gw = new gameWindow(this.anfitrionPartida);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

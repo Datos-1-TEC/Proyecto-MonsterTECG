@@ -1,5 +1,6 @@
 package cr.ac.itcr.UI;
 
+import cr.ac.itcr.Cartas.Stack.ListaDoble;
 import cr.ac.itcr.Jugador.Anfitrion;
 import cr.ac.itcr.Jugador.Invitado;
 import cr.ac.itcr.Jugador.Jugador;
@@ -17,8 +18,7 @@ public class gameWindow extends JFrame {
     JButton cartaManoI3 = new JButton("3");
     JButton cartaManoI4 = new JButton("4");
     JButton agregarCarta = new JButton("Add Card");
-
-
+    ListaDoble<JButton> listButtonCards = new ListaDoble<>();
 
     public gameWindow(Jugador jugador) throws HeadlessException {
         this.jugador = jugador;
@@ -48,14 +48,14 @@ public class gameWindow extends JFrame {
         agregarCarta.setBounds(800, 580, 120,30);
         agregarCarta.setBackground(Color.yellow);
 
-
         add(cartaManoI1);
         add(cartaManoI2);
         add(cartaManoI3);
         add(cartaManoI4);
         add(agregarCarta);
 
-        myPathImage();
+        addCardsToButtons();
+        //myPathImage();
 
 
     }
@@ -72,14 +72,23 @@ public class gameWindow extends JFrame {
         validate();
     }
 
-    private void myPathImage() {
-        String file = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(1).getImagePath();
-        imageInButton(file,cartaManoI1);
+    private void myPathImage(int position, JButton button) {
+        String file = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(position).getImagePath();
+        imageInButton(file,button);
     }
 
+    public void addCardsToButtons(){
+        int cont = 0;
+        listButtonCards.ingresarNodo(cartaManoI1);
+        listButtonCards.ingresarNodo(cartaManoI2);
+        listButtonCards.ingresarNodo(cartaManoI3);
+        listButtonCards.ingresarNodo(cartaManoI4);
 
-    public static void main (String[] args) {
-        gameWindow game = new gameWindow(new Jugador());
+        while (listButtonCards.getLength()> cont){
+            JButton button = listButtonCards.getElementAt(cont);
+            myPathImage(cont, button);
+            cont ++;
+        }
     }
 
 }
