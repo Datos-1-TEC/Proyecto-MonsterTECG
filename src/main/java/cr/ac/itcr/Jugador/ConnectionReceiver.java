@@ -1,14 +1,13 @@
 package cr.ac.itcr.Jugador;
 
-import java.io.BufferedReader;
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.*;
 import java.util.HashMap;
 import java.util.Set;
 
 public class ConnectionReceiver {
+    private DataOutputStream out;
+    private DataInputStream in;
     Anfitrion anfitrion;
     Boolean flag = true;
     private HashMap<String, ConnectionHandler> usuarios = new HashMap<>();
@@ -30,7 +29,7 @@ public class ConnectionReceiver {
     }
 
     public void processConnection(Socket socket) throws IOException {
-        DataInputStream in = new DataInputStream(socket.getInputStream());
+        in = new DataInputStream(socket.getInputStream());
 
         String incomingCard = in.readUTF();
         System.out.println("Invitado ha ingresado: "+ incomingCard);
@@ -63,5 +62,8 @@ public class ConnectionReceiver {
         }
         set = new StringBuilder(set.substring(0, set.length() - 1));
         return set.toString();
+    }
+    public DataOutputStream getOut() {
+        return out;
     }
 }

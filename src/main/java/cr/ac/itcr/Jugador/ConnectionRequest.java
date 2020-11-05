@@ -18,6 +18,7 @@ public class ConnectionRequest {
     private DataOutputStream out;
     private DataInputStream in;
     boolean flag = true;
+    DatosPartida datosPartida;
 
 
     public ConnectionRequest(String ip, int port, DatosPartida datosPartida) throws IOException {
@@ -25,6 +26,7 @@ public class ConnectionRequest {
         Socket request = new Socket(ip, port );
         in = new DataInputStream(request.getInputStream());
         out = new DataOutputStream(request.getOutputStream());
+        this.datosPartida = datosPartida;
 
         Thread thread = new Thread(() -> {
             while(flag) {
@@ -38,14 +40,16 @@ public class ConnectionRequest {
         });
         thread.start();
     }
-    public void processMessage(String message) {
+    public void processMessage(String message) throws IOException {
 
-        String[] components = message.split("%", 2);
+        String[] components = message.split("%");
         //Se agrega un nuevo usuario en caso de que no se encuentre en lista
         if (components[0].equals("Anfitrion")) {
-            //datosPartida.cartasInvitado(mensaje)
+            String[] cartas = message.split(";");
 
-
+            for (String carta: cartas){
+                System.out.println(carta);
+            }
         }
     }
     public void sendMessage(String message) {

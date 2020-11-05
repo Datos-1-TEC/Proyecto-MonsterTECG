@@ -115,7 +115,6 @@ public class Window extends JFrame {
                 setVisible(false);
 
                 ConnectionReceiver receiver = new ConnectionReceiver(anfitrionPartida);
-                gameWindow gw = new gameWindow(this.anfitrionPartida);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -139,7 +138,6 @@ public class Window extends JFrame {
                 ConnectionRequest request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
                 request.getOut().writeUTF(cartasNombre);
                 request.getOut().flush();
-                gameWindow gw = new gameWindow(this.invitadoPartida);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
