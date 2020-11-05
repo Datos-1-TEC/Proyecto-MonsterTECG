@@ -8,14 +8,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.ImageIcon;
 
 public class gameWindow extends JFrame {
     private Jugador jugador;
-    JButton cartaManoI1 = new JButton("1");
+    JButton cartaManoI1 = new JButton("Carta1");
     JButton cartaManoI2 = new JButton("2");
     JButton cartaManoI3 = new JButton("3");
     JButton cartaManoI4 = new JButton("4");
     JButton agregarCarta = new JButton("Add Card");
+
 
 
     public gameWindow(Jugador jugador) throws HeadlessException {
@@ -43,9 +45,8 @@ public class gameWindow extends JFrame {
         cartaManoI4.setBounds(290, 530, 70,90);
         cartaManoI4.setBackground(Color.yellow);
 
-        agregarCarta.setBounds(800, 580, 70,90);
+        agregarCarta.setBounds(800, 580, 120,30);
         agregarCarta.setBackground(Color.yellow);
-
 
 
         add(cartaManoI1);
@@ -54,6 +55,26 @@ public class gameWindow extends JFrame {
         add(cartaManoI4);
         add(agregarCarta);
 
+        myPathImage();
+
+
+    }
+
+    private void imageInButton(String imagePath, JButton button) {
+
+        ImageIcon imageIcon;
+        imageIcon = new ImageIcon(imagePath);
+        Image newImage = imageIcon.getImage();
+        Image scaled =  newImage.getScaledInstance(button.getWidth(), button.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon paraBoton = new ImageIcon(scaled);
+        button.setIcon(paraBoton);
+
+        validate();
+    }
+
+    private void myPathImage() {
+        String file = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(1).getImagePath();
+        imageInButton(file,cartaManoI1);
     }
 
 
