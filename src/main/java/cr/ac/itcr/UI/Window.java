@@ -1,5 +1,7 @@
 package cr.ac.itcr.UI;
 
+import cr.ac.itcr.Cartas.AgregarDeck;
+import cr.ac.itcr.Cartas.Stack.ManoCartas;
 import cr.ac.itcr.Jugador.Anfitrion;
 import cr.ac.itcr.Jugador.ConnectionReceiver;
 import cr.ac.itcr.Jugador.ConnectionRequest;
@@ -22,6 +24,8 @@ public class Window extends JFrame {
     JButton loginAnfitrion = new JButton("Registrar");
     Anfitrion anfitrionPartida = new Anfitrion();
     Invitado invitadoPartida;
+    ConnectionRequest request;
+    ConnectionReceiver receiver;
 
     public Anfitrion getAnfitrionPartida() {
         return anfitrionPartida;
@@ -30,8 +34,6 @@ public class Window extends JFrame {
     public Invitado getInvitadoPartida() {
         return invitadoPartida;
     }
-
-
 
     public Window() throws HeadlessException {
         settingRole();
@@ -88,9 +90,9 @@ public class Window extends JFrame {
         setLoginAnfitrion();
     }
 
-
     public void setAnfitrion(){
         JLabel infoIP = new JLabel("Ingrese IP:");
+
         infoIP.setBounds(50,250, 70, 20 );
         JLabel infoPort = new JLabel("Ingrese Puerto:");
         infoPort.setBounds(190,250, 90, 20 );
@@ -114,7 +116,13 @@ public class Window extends JFrame {
                 this.anfitrionPartida.setIP(hostIP);
                 setVisible(false);
 
-                ConnectionReceiver receiver = new ConnectionReceiver(anfitrionPartida);
+                this.receiver = new ConnectionReceiver(anfitrionPartida);
+                AgregarDeck nuevoDeck =  new AgregarDeck();
+                ManoCartas nuevaMano = new ManoCartas();
+                nuevaMano.agregarCartas();
+                anfitrionPartida.setManoCartas(nuevaMano);
+                anfitrionPartida.setMiDeck(nuevoDeck.generateDeck());
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -135,9 +143,9 @@ public class Window extends JFrame {
                 //setVisible(false)
                 DatosPartida datosPartida = new DatosPartida(this.anfitrionPartida, this.invitadoPartida);
                 String cartasNombre = datosPartida.cartasInvitado();
-                ConnectionRequest request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
-                request.getOut().writeUTF(cartasNombre);
-                request.getOut().flush();
+                this.request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
+                this.request.getOut().writeUTF("primerasInvitado%"+ cartasNombre);
+                this.request.getOut().flush();
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
