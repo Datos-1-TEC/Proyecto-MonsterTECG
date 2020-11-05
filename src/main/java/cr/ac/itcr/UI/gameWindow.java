@@ -23,6 +23,7 @@ public class gameWindow extends JFrame {
     public gameWindow(Jugador jugador) throws HeadlessException {
         this.jugador = jugador;
         cartasMano();
+        addCardsToButtons();
         setTitle("MonsterTEC");
         setBounds(100,100,950,700);
         setLayout(null);
@@ -53,8 +54,6 @@ public class gameWindow extends JFrame {
         add(cartaManoI3);
         add(cartaManoI4);
         add(agregarCarta);
-
-        addCardsToButtons();
         //myPathImage();
 
 

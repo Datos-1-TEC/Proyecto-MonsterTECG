@@ -5,181 +5,181 @@
       "name": "Congelar",
       "action": "Oponente no puede atacar en siguiente turno",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas1.gif"
+      "imagePath": "Cartas1/HechizosCartas1.png"
     },
     "HechizosCartas2": {
       "type": "HechizosCartas",
       "name": "Curar",
       "action": "Restaura vida",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas2.gif"
+      "imagePath": "Cartas1/HechizosCartas2.png"
     },
     "HechizosCartas3":{
       "type": "HechizosCartas",
       "name": "Poder supremo",
       "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas3.gif"
+      "imagePath": "Cartas1/HechizosCartas3.png"
     },
     "HechizosCartas4":{
       "type": "HechizosCartas",
       "name": "Robar carta",
       "action": "Quita una carta al oponente",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas4.gif"
+      "imagePath": "Cartas1/HechizosCartas4.png"
     },
     "HechizosCartas5":{
       "type": "HechizosCartas",
       "name": "Dinero facil",
       "action": "Duplica cantidad de mana",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas5.gif"
+      "imagePath": "Cartas1/HechizosCartas5.png"
     },
     "HechizosCartas6":{
       "type": "HechizosCartas",
       "name": "Veneno",
       "action": "Quita vida al oponente",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas6.gif"
+      "imagePath": "Cartas1/HechizosCartas6.png"
     },
     "HechizosCartas7":{
       "type": "HechizosCartas",
       "name": "Espejo",
       "action": "Clonar carta disponible",
       "costeMana": 150,
-      "imagePath": "Cartas/HechizosCartas7.gif"
+      "imagePath": "Cartas1/HechizosCartas7.png"
     },
     "HechizosCartas8":{
       "type": "HechizosCartas",
       "name": "Congelar",
       "action": "Oponente no puede atacar en siguiente turno",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas8.gif"
+      "imagePath": "Cartas1/HechizosCartas8.png"
     },"HechizosCartas9":{
       "type": "HechizosCartas",
       "name": "Curar",
       "action": "Restaura vida",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas9.gif"
+      "imagePath": "Cartas1/HechizosCartas9.png"
     },
     "HechizosCartas10":{
       "type": "HechizosCartas",
       "name": "Veneno",
       "action": "Quita vida al oponente",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas10.gif"
+      "imagePath": "Cartas1/HechizosCartas10.png"
     },
     "HechizosCartas11":{
       "type": "HechizosCartas",
       "name": "Dinero facil",
       "action": "Duplica cantidad de mana",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas11.gif"
+      "imagePath": "Cartas1/HechizosCartas11.png"
     },
     "HechizosCartas12":{
       "type": "HechizosCartas",
       "name": "Robar carta",
       "action": "Quita una carta al oponente",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas12.gif"
+      "imagePath": "Cartas1/HechizosCartas12.png"
     },
     "HechizosCartas13":{
       "type": "HechizosCartas",
       "name": "Poder supremo",
       "action": "En siguiente turno, jugador invoca 3 cartas seguidas",
       "costeMana": 50,
-      "imagePath": "Cartas/HechizosCartas13.gif"
+      "imagePath": "Cartas1/HechizosCartas13.png"
     },
     "EsbirrosCartas1":{
       "type": "EsbirrosCartas",
       "name": "Arqueras",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas1.gif"
+      "imagePath": "Cartas1/EsbirrosCartas1.png"
     },
     "EsbirrosCartas2":{
       "type": "EsbirrosCartas",
       "name": "Barbaro",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas2.gif"
+      "imagePath": "Cartas1/EsbirrosCartas2.png"
     },
     "EsbirrosCartas3":{
       "type": "EsbirrosCartas",
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas3.gif"
+      "imagePath": "Cartas1/EsbirrosCartas3.png"
     },
     "EsbirrosCartas4":{
       "type": "EsbirrosCartas",
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas4.gif"
+      "imagePath": "Cartas1/EsbirrosCartas4.png"
     },
     "EsbirrosCartas5":{
       "type": "EsbirrosCartas",
       "name": "Caballero",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas5.gif"
+      "imagePath": "Cartas1/EsbirrosCartas5.png"
     },
     "EsbirrosCartas6":{
       "type": "EsbirrosCartas",
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas6.gif"
+      "imagePath": "Cartas1/EsbirrosCartas6.png"
     },
     "EsbirrosCartas7":{
       "type": "EsbirrosCartas",
       "name": "Gargolas",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas7.gif"
+      "imagePath": "Cartas1/EsbirrosCartas7.png"
     },
     "EsbirrosCartas8":{
       "type": "EsbirrosCartas",
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas8.gif"
+      "imagePath": "Cartas1/EsbirrosCartas8.png"
     },
     "EsbirrosCartas9":{
       "type": "EsbirrosCartas",
       "name": "Globo",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas9.gif"
+      "imagePath": "Cartas1/EsbirrosCartas9.png"
     },
     "EsbirrosCartas10":{
       "type": "EsbirrosCartas",
       "name": "Minero",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas10.gif"
+      "imagePath": "Cartas1/EsbirrosCartas10.png"
     },
     "EsbirrosCartas11":{
       "type": "EsbirrosCartas",
       "name": "Arqueras",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas11.gif"
+      "imagePath": "Cartas1/EsbirrosCartas11.png"
     },
     "EsbirrosCartas12":{
       "type": "EsbirrosCartas",
       "name": "Caballero",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas12.gif"
+      "imagePath": "Cartas1/EsbirrosCartas12.png"
     },
     "EsbirrosCartas13":{
       "type": "EsbirrosCartas",
       "name": "Minero",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas13.gif"
+      "imagePath": "Cartas1/EsbirrosCartas13.png"
     },
     "EsbirrosCartas14":{
       "type": "EsbirrosCartas",
@@ -187,7 +187,7 @@
       "name": "Princesa",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas14.gif"
+      "imagePath": "Cartas1/EsbirrosCartas14.png"
     },
     "EsbirrosCartas15":{
       "type": "EsbirrosCartas",
@@ -195,7 +195,7 @@
       "name": "Duendes",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas15.gif"
+      "imagePath": "Cartas1/EsbirrosCartas15.png"
     },
     "EsbirrosCartas16":{
       "type": "EsbirrosCartas",
@@ -203,7 +203,7 @@
       "name": "Gigante",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas16.gif"
+      "imagePath": "Cartas1/EsbirrosCartas16.png"
     },
     "EsbirrosCartas17":{
       "type": "EsbirrosCartas",
@@ -211,77 +211,77 @@
       "name": "Esqueletos",
       "action": "Damage",
       "costeMana": 100,
-      "imagePath": "Cartas/EsbirrosCartas17.gif"
+      "imagePath": "Cartas1/EsbirrosCartas17.png"
     },
     "SecretosCartas1":{
       "type": "SecretosCartas",
       "name": "Arcoiris",
       "action": "Colorea botones",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas1.gif"
+      "imagePath": "Cartas1/SecretosCartas1.png"
     },
     "SecretosCartas2":{
       "type": "SecretosCartas",
       "name": "Cultura general",
       "action": "Muestra datos curiosos",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas2.gif"
+      "imagePath": "Cartas1/SecretosCartas2.png"
     },
     "SecretosCartas3":{
       "type": "SecretosCartas",
       "name": "San Carlos",
       "action": "Muestra foto del Volcan Arenal",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas3.gif"
+      "imagePath": "Cartas1/SecretosCartas3.png"
     },
     "SecretosCartas4":{
       "type": "SecretosCartas",
       "name": "Turrialba",
       "action": "Muestra foto del Volcan Turrialba",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas4.gif"
+      "imagePath": "Cartas1/SecretosCartas4.png"
     },
     "SecretosCartas5":{
       "type": "SecretosCartas",
       "name": "Calculo",
       "action": "Muestra problema de calculo",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas5.gif"
+      "imagePath": "Cartas1/SecretosCartas5.png"
     },
     "SecretosCartas6":{
       "type": "SecretosCartas",
       "name": "Estrellita",
       "action": "Agrega una estrella a la pantalla del jugador",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas6.gif"
+      "imagePath": "Cartas1/SecretosCartas6.png"
     },
     "SecretosCartas7":{
       "type": "SecretosCartas",
       "name": "Swap",
       "action": "Carta en primer lugar pasa a estar en ultimo lugar",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas7.gif"
+      "imagePath": "Cartas1/SecretosCartas7.png"
     },
     "SecretosCartas8":{
       "type": "SecretosCartas",
       "name": "Limpieza",
       "action": "Elimina ultima jugada en historial",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas8.gif"
+      "imagePath": "Cartas1/SecretosCartas8.png"
     },
     "SecretosCartas9":{
       "type": "SecretosCartas",
       "name": "Stop",
       "action": "Detiene tiempo",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas9.gif"
+      "imagePath": "Cartas1/SecretosCartas9.png"
     },
     "SecretosCartas10":{
       "type": "SecretosCartas",
       "name": "Calculo",
       "action": "Muestra problema de calculo",
       "costeMana": 100,
-      "imagePath": "Cartas/SecretosCartas10.gif"
+      "imagePath": "Cartas1/SecretosCartas10.png"
     }
 
 }}

@@ -107,7 +107,7 @@ public class Window extends JFrame {
     public void setLoginAnfitrion(){
         loginAnfitrion.setBounds(100, 300, 90, 30);
         loginAnfitrion.setBackground(Color.orange);
-
+        add(loginAnfitrion);
         loginAnfitrion.addActionListener(e -> {
 
             try {
@@ -119,15 +119,16 @@ public class Window extends JFrame {
                 this.anfitrionPartida.setPort(Integer.parseInt(addPort.getText()));
                 InetAddress hostIP = InetAddress.getByName(addIP.getText());
                 this.anfitrionPartida.setIP(hostIP);
-                setVisible(false);
+                this.setVisible(false);
                 ConnectionReceiver receiver = new ConnectionReceiver(this.anfitrionPartida);
-                //gameWindow gw = new gameWindow(this.anfitrionPartida);
+                gameWindow gw = new gameWindow(this.anfitrionPartida);
+                gw.setVisible(true);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
             System.out.println("IP de partida: "+ addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
         });
-        add(loginAnfitrion);
+
     }
 
     public void setLoginInvitado() {
