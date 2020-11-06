@@ -24,14 +24,13 @@ public class gameWindow extends JFrame implements ActionListener {
     JButton cartaManoI9 = new JButton("cartaManoI9");
     JButton cartaManoI10 = new JButton("cartaManoI10");
     JButton cartaTirada = new JButton("carta tirada");
+    JButton cartaRecibida = new JButton("carta Recibida");
     JTextArea estadoJugador = new JTextArea("Info Jugador");
     ConnectionReceiver receiver ;
     ConnectionRequest request;
-
-
-
     JButton agregarCarta = new JButton("Add Card");
     ListaDoble<JButton> listButtonCards = new ListaDoble<>();
+
 
     public gameWindow(Jugador jugador, ConnectionReceiver receiver, ConnectionRequest request) throws HeadlessException {
         this.jugador = jugador;
@@ -39,7 +38,12 @@ public class gameWindow extends JFrame implements ActionListener {
         this.request = request;
         cartasMano();
         addCardsToButtons();
-        addInfoJugador("Mi estado" +"\n" + "Vida: " + jugador.getVida() + "\n" + "Maná: " + jugador.getMana() );
+        addCardFromDeck();
+        addInfoJugador("Mi estado: " +"\n" +
+                "Vida: " + jugador.getVida() + "\n" +
+                "Maná: " + jugador.getMana() +"\n" +
+                "En Deck: " + jugador.getMiDeck().getSize());
+
         setTitle("MonsterTEC");
         centerFrame(this, 950, 700);
         //setBounds(100,100,950,700);
@@ -84,15 +88,17 @@ public class gameWindow extends JFrame implements ActionListener {
         cartaManoI10.setBounds(770-20, 530, 70,90);
         cartaManoI10.setBackground(Color.yellow);
 
-        agregarCarta.setBounds(850-20, 580, 90,30);
-        agregarCarta.setBackground(Color.yellow);
 
         cartaTirada.setBounds(420,310, 100, 130);
         cartaTirada.setBackground(Color.yellow);
 
+        cartaRecibida.setBounds(300,310, 100, 130);
+        cartaRecibida.setBackground(Color.yellow);
+
         estadoJugador.setBounds(20, 450, 100, 70);
         estadoJugador.setBackground(Color.yellow);
         estadoJugador.setEditable(false);
+
 
         add(estadoJugador);
         add(cartaManoI1);
@@ -105,8 +111,8 @@ public class gameWindow extends JFrame implements ActionListener {
         add(cartaManoI8);
         add(cartaManoI9);
         add(cartaManoI10);
-        add(agregarCarta);
         add(cartaTirada);
+        add(cartaRecibida);
 
         cartaManoI1.addActionListener(this::actionPerformed);
         cartaManoI2.addActionListener(this::actionPerformed);
@@ -208,6 +214,26 @@ public class gameWindow extends JFrame implements ActionListener {
         this.jugador.getManoCartas().getCartaListaCircular().deleteNode(cartaBorrar);
         addCardsToButtons();
 
+    }
+
+    public void showReceivedCard(Carta receivedCard){
+        imageInButton(receivedCard.getImagePath(), this.cartaRecibida);
+    }
+
+    public void addCardFromDeck(){
+        this.agregarCarta.setBounds(850-20, 580, 90,30);
+        this.agregarCarta.setBackground(Color.yellow);
+        add(this.agregarCarta);
+        this.agregarCarta.addActionListener(e -> {
+            Carta agregar = ((Carta)jugador.getMiDeck().pop());
+            jugador.getManoCartas().getCartaListaCircular().pushFront(agregar);
+            addCardsToButtons();
+            addInfoJugador("Mi estado: " +"\n" +
+                    "Vida: " + jugador.getVida() + "\n" +
+                    "Maná: " + jugador.getMana() +"\n" +
+                    "En Deck: " + jugador.getMiDeck().getSize());
+
+        });
     }
 }
 

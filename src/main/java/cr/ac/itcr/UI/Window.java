@@ -118,7 +118,10 @@ public class Window extends JFrame {
                 this.anfitrionPartida.setIP(hostIP);
                 this.setVisible(false);
                 receiver = new ConnectionReceiver(this.anfitrionPartida, cartasNombre, datosPartida);
+
                 gameWindow gw = new gameWindow(this.anfitrionPartida, receiver, request = null);
+                receiver.setGw(gw);
+
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
@@ -137,20 +140,23 @@ public class Window extends JFrame {
             int serverPort = Integer.parseInt(addPort.getText());
             try {
                 this.invitadoPartida = new Invitado(serverIP, serverPort);
-                //setVisible(false)
+                setVisible(false);
                 DatosPartida datosPartida = new DatosPartida(this.invitadoPartida, this.oponente);
                 String cartasNombre = datosPartida.cartasPropias();
                 request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
+
+                gameWindow gw = new gameWindow(this.invitadoPartida, receiver = null, request);
+
+                request.setGw(gw);
+
                 request.getOut().writeUTF(cartasNombre);
                 request.getOut().flush();
-                gameWindow gw = new gameWindow(this.invitadoPartida, receiver = null, request);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
             System.out.println("IP de partida: " + addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
         });
-
 
     }
 

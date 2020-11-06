@@ -8,6 +8,7 @@ import cr.ac.itcr.Cartas.Carta;
 import cr.ac.itcr.Cartas.HechizosCartas;
 import cr.ac.itcr.Cartas.Json;
 import cr.ac.itcr.UI.DatosPartida;
+import cr.ac.itcr.UI.gameWindow;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -22,6 +23,9 @@ public class ConnectionRequest {
     private DataInputStream in;
     boolean flag = true;
     private DatosPartida datosPartida;
+    private gameWindow gw;
+
+    private Carta carta;
 
 
     public ConnectionRequest(String ip, int port, DatosPartida datosPartida) throws IOException {
@@ -43,6 +47,7 @@ public class ConnectionRequest {
         });
         thread.start();
     }
+
     public void processMessage(String message) throws IOException {
 
         if (message.contains("%")) {
@@ -52,7 +57,8 @@ public class ConnectionRequest {
             System.out.println("Processing message: " + message );
             JsonNode node = Json.parse(message);
             writingJson("src/jugadas.json", node);
-            Carta carta = Json.fromJson(node, Carta.class);
+            this.carta = Json.fromJson(node, Carta.class);
+            this.gw.showReceivedCard(this.carta);
             System.out.println(carta.getName());
         }
     }
@@ -78,9 +84,11 @@ public class ConnectionRequest {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(new File(fileName),nodoJugadas);
     }
-
     public DataOutputStream getOut() {
         return out;
     }
 
+    public void setGw(gameWindow gw) {
+        this.gw = gw;
+    }
 }

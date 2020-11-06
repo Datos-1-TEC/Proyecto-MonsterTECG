@@ -8,6 +8,7 @@ import cr.ac.itcr.Cartas.Carta;
 import cr.ac.itcr.Cartas.Json;
 import cr.ac.itcr.Cartas.Stack.ListaDoble;
 import cr.ac.itcr.UI.DatosPartida;
+import cr.ac.itcr.UI.gameWindow;
 
 import java.io.*;
 import java.net.*;
@@ -22,6 +23,9 @@ public class ConnectionReceiver {
     private HashMap<String, ConnectionHandler> usuarios = new HashMap<>();
     DatosPartida datosPartida;
     private ConnectionHandler handler;
+    gameWindow gw;
+
+    private Carta carta;
 
     public ConnectionReceiver(Anfitrion anfitrion, String cartasNombre, DatosPartida datosPartida) throws IOException {
         this.anfitrion = anfitrion;
@@ -57,10 +61,12 @@ public class ConnectionReceiver {
         System.out.println("Processing message: " + message );
         JsonNode node = Json.parse(message);
         writingJson("src/jugadas.json", node);
-        Carta carta = Json.fromJson(node, Carta.class);
-    }
-    //Lee las jugadas en el archivo de Json jugadas.json
+        this.carta = Json.fromJson(node, Carta.class);
+        this.gw.showReceivedCard(this.carta);
 
+    }
+
+    //Lee las jugadas en el archivo de Json jugadas.json
     public ListaDoble<JsonNode> readNodes(String fileName) throws JsonProcessingException {
         ListaDoble<JsonNode> listaNodos = new ListaDoble<>();
         JsonNode nodoJugadas =  Json.parse(fileName);
@@ -71,6 +77,7 @@ public class ConnectionReceiver {
         }
         return listaNodos;
     }
+
     public void writingJson(String fileName, JsonNode cartaNode) throws IOException {
         Json cardsreader = new Json();
         String json = new String();
@@ -86,23 +93,11 @@ public class ConnectionReceiver {
         objectMapper.writeValue(new File(fileName),nodoJugadas);
     }
 
-    public void notifyClients() throws IOException {
-
-        Set<String> keys = usuarios.keySet();
-        String message = "Anfitrion" + "%" + unifyKeys(keys);
-        for (String key: keys){
-            usuarios.get(key).sendMessage(message);
-        }
-    }
-    public String unifyKeys(Set<String> keys){
-        StringBuilder set = new StringBuilder();
-        for (String key: keys){
-            set.append(key).append(";");
-        }
-        set = new StringBuilder(set.substring(0, set.length() - 1));
-        return set.toString();
-    }
     public ConnectionHandler getHandler() {
         return handler;
+    }
+
+    public void setGw(gameWindow gw) {
+        this.gw = gw;
     }
 }
