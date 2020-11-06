@@ -12,7 +12,7 @@ public class ConnectionHandler {
     DataInputStream in;
     ConnectionReceiver receiver;
 
-    public ConnectionHandler(Socket socket, String name, ConnectionReceiver receiver) throws IOException {
+    public ConnectionHandler(Socket socket, ConnectionReceiver receiver) throws IOException {
         this.socket = socket;
         this.out = new DataOutputStream(socket.getOutputStream());
         this.in = new DataInputStream(socket.getInputStream());
@@ -22,7 +22,7 @@ public class ConnectionHandler {
             while(flag) {
                 try {
                     String message = in.readUTF();
-                    receiver.processMessage(name, message);
+                    receiver.processMessage(message);
                 } catch (IOException e){
                     e.printStackTrace();
                 }

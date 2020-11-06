@@ -1,7 +1,10 @@
 package cr.ac.itcr.Jugador;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
+import cr.ac.itcr.Cartas.Carta;
 import cr.ac.itcr.Cartas.HechizosCartas;
 import cr.ac.itcr.Cartas.Json;
 import cr.ac.itcr.UI.DatosPartida;
@@ -18,6 +21,7 @@ public class ConnectionRequest {
     private DataOutputStream out;
     private DataInputStream in;
     boolean flag = true;
+    private DatosPartida datosPartida;
 
 
     public ConnectionRequest(String ip, int port, DatosPartida datosPartida) throws IOException {
@@ -25,6 +29,7 @@ public class ConnectionRequest {
         Socket request = new Socket(ip, port );
         in = new DataInputStream(request.getInputStream());
         out = new DataOutputStream(request.getOutputStream());
+        this.datosPartida = datosPartida;
 
         Thread thread = new Thread(() -> {
             while(flag) {
@@ -38,14 +43,17 @@ public class ConnectionRequest {
         });
         thread.start();
     }
-    public void processMessage(String message) {
+    public void processMessage(String message) throws IOException {
 
-        String[] components = message.split("%", 2);
-        //Se agrega un nuevo usuario en caso de que no se encuentre en lista
-        if (components[0].equals("Anfitrion")) {
-            //datosPartida.cartasInvitado(mensaje)
-
-
+        if (message.contains("%")) {
+            datosPartida.cartasOponente(message);
+        }
+        else {
+            System.out.println("Processing message: " + message );
+            JsonNode node = Json.parse(message);
+            writingJson("src/jugadas.json", node);
+            Carta carta = Json.fromJson(node, Carta.class);
+            System.out.println(carta.getName());
         }
     }
     public void sendMessage(String message) {
@@ -56,22 +64,23 @@ public class ConnectionRequest {
             e.printStackTrace();
         }
     }
+    public void writingJson(String fileName, JsonNode cartaNode) throws IOException {
+        Json cardsreader = new Json();
+        String json = new String();
+        JsonNode nodoJugadas =  Json.parse(cardsreader.jsonReader(json, fileName));
+        int size = 0;
+        try{
+            size = nodoJugadas.get("Jugadas").size();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        ((ObjectNode)nodoJugadas.get("Jugadas")).set(String.valueOf(size+1), cartaNode);
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.writeValue(new File(fileName),nodoJugadas);
+    }
 
     public DataOutputStream getOut() {
         return out;
     }
-    /*    public String drawCard() throws IOException {
-        //Object instantiation
-        ObjectMapper objectMapper = new ObjectMapper();
 
-        HechizosCartas nuevaCarta = new HechizosCartas();
-        nuevaCarta.setName("Congelar");
-        nuevaCarta.setCosteMana(90);
-        nuevaCarta.setAction("Pasa 3 turnos");
-        JsonNode cartaNode = Json.toJson(nuevaCarta);
-        objectMapper.writeValue(new File("src/carta.json"),nuevaCarta);
-
-        String card = Json.generateString(cartaNode, true);
-        return card;
-    }*/
 }

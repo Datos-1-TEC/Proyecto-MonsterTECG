@@ -2,10 +2,7 @@ package cr.ac.itcr.UI;
 
 import cr.ac.itcr.Cartas.AgregarDeck;
 import cr.ac.itcr.Cartas.Stack.ManoCartas;
-import cr.ac.itcr.Jugador.Anfitrion;
-import cr.ac.itcr.Jugador.ConnectionReceiver;
-import cr.ac.itcr.Jugador.ConnectionRequest;
-import cr.ac.itcr.Jugador.Invitado;
+import cr.ac.itcr.Jugador.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -24,6 +21,9 @@ public class Window extends JFrame {
     JButton loginAnfitrion = new JButton("Registrar");
     Anfitrion anfitrionPartida = new Anfitrion();
     Invitado invitadoPartida;
+    ConnectionReceiver receiver;
+    ConnectionRequest request;
+    Jugador oponente = new Jugador();
 
     public Anfitrion getAnfitrionPartida() {
         return anfitrionPartida;
@@ -111,18 +111,15 @@ public class Window extends JFrame {
         loginAnfitrion.addActionListener(e -> {
 
             try {
-                AgregarDeck nuevoDeck =  new AgregarDeck();
-                ManoCartas nuevaMano = new ManoCartas();
-                nuevaMano.agregarCartas();
-                this.anfitrionPartida.setManoCartas(nuevaMano);
-                this.anfitrionPartida.setMiDeck(nuevoDeck.generateDeck());
+                DatosPartida datosPartida = new DatosPartida(this.anfitrionPartida, this.oponente);
+                String cartasNombre = datosPartida.cartasPropias();
                 this.anfitrionPartida.setPort(Integer.parseInt(addPort.getText()));
                 InetAddress hostIP = InetAddress.getByName(addIP.getText());
                 this.anfitrionPartida.setIP(hostIP);
                 this.setVisible(false);
-                ConnectionReceiver receiver = new ConnectionReceiver(this.anfitrionPartida);
-                gameWindow gw = new gameWindow(this.anfitrionPartida);
-                gw.setVisible(true);
+                receiver = new ConnectionReceiver(this.anfitrionPartida, cartasNombre, datosPartida);
+                gameWindow gw = new gameWindow(this.anfitrionPartida, receiver, request = null);
+
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -141,12 +138,12 @@ public class Window extends JFrame {
             try {
                 this.invitadoPartida = new Invitado(serverIP, serverPort);
                 //setVisible(false)
-                DatosPartida datosPartida = new DatosPartida(this.anfitrionPartida, this.invitadoPartida);
-                String cartasNombre = datosPartida.cartasInvitado();
-                ConnectionRequest request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
+                DatosPartida datosPartida = new DatosPartida(this.invitadoPartida, this.oponente);
+                String cartasNombre = datosPartida.cartasPropias();
+                request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
                 request.getOut().writeUTF(cartasNombre);
                 request.getOut().flush();
-                gameWindow gw = new gameWindow(this.invitadoPartida);
+                gameWindow gw = new gameWindow(this.invitadoPartida, receiver = null, request);
 
             } catch (IOException ioException) {
                 ioException.printStackTrace();

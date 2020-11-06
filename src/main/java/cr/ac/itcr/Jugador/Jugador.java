@@ -46,9 +46,9 @@ public class Jugador {
 
     public String drawCard(int position) throws IOException {
         Carta drawed = getManoCartas().getCartaListaCircular().getElementAt(position);
-        ObjectMapper objectMapper = new ObjectMapper();
         JsonNode cartaNode = Json.toJson(drawed);
-        objectMapper.writeValue(new File("src/carta.json"),drawed);
+        ObjectMapper objectMapper = new ObjectMapper();
+        //objectMapper.writeValue(new File("src/jugadas.json"),drawed);
         String card = Json.generateString(cartaNode, true);
         return card;
     }

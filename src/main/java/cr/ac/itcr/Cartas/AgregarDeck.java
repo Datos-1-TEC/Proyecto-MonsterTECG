@@ -41,7 +41,7 @@ public class AgregarDeck {
 
             //PARSE JSON TO STRING
             JsonNode node = Json.parse(cardsreader.jsonReader(json, "cartas.json"));
-            System.out.println("Deck jugador: ");
+            System.out.println("Deck de oponente: ");
             AddtoDeck(cartasNombre, node);
         } catch(Exception e) {
             e.printStackTrace();

@@ -29,13 +29,13 @@ public class JsonTest {
             String json = new String();
             Json cardsReader = new Json();
 //PARSE JSON TO STRING
-            JsonNode node = Json.parse(cardsReader.jsonReader(json, "src/carta.json"));
+            JsonNode node = Json.parse(cardsReader.jsonReader(json, "src/jugadas.json"));
             System.out.println(node.get("costeMana").asText());
 /*
             //Object to Json
             JsonNode cartaNode = Json.toJson(nuevaCarta);
             System.out.println(Json.generateString(cartaNode, true));
-            objectMapper.writeValue(new File("src/carta.json"),nuevaCarta);
+            objectMapper.writeValue(new File("src/jugadas.json"),nuevaCarta);
 
 
           Invitado invitado = new Invitado("192.168.8.100", 9090);
@@ -44,8 +44,6 @@ public class JsonTest {
             nuevaMano.agregarCartas();
             invitado.setMiDeck(nuevoDeck.generateDeck());
             invitado.setManoCartas(nuevaMano);*/
-
-
 
         } catch(Exception e) {
             e.printStackTrace();
