@@ -47,6 +47,7 @@ public class gameWindow extends JFrame implements ActionListener {
         this.jugador = jugador;
         this.receiver = receiver;
         this.request = request;
+        this.jugador.onGame = true;
         cartasMano();
         addCardsToButtons();
         addCardFromDeck();
@@ -226,29 +227,34 @@ public class gameWindow extends JFrame implements ActionListener {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getActionCommand().contains("cartaManoI")){
-            int cardIndex = getIndex((JButton) e.getSource());
-            Carta cartaEnMano = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(cardIndex);
-            imageInButton(cartaEnMano.getImagePath(), cartaTirada);
-            try {
-                String drawedCard = this.jugador.drawCard(cardIndex);
-                int CosteMana = cartaEnMano.getCosteMana();
-                this.jugador.setMana(this.jugador.getMana() - CosteMana); //Aqui se actualiza el mana del jugador luego de tirar una carta
-                addInfoJugador("Mi estado: " +"\n" +
-                        "Vida: " + jugador.getVida() + "\n" +
-                        "Maná: " + jugador.getMana() +"\n" +
-                        "En Deck: " + jugador.getMiDeck().getSize());
-                repaint();
-                if (this.jugador instanceof Invitado){
-                    request.sendMessage(drawedCard);
+        if(this.jugador.onGame){
+            if(e.getActionCommand().contains("cartaManoI")){
+                int cardIndex = getIndex((JButton) e.getSource());
+                Carta cartaEnMano = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(cardIndex);
+                imageInButton(cartaEnMano.getImagePath(), cartaTirada);
+                try {
+                    String drawedCard = this.jugador.drawCard(cardIndex);
+                    int CosteMana = cartaEnMano.getCosteMana();
+                    this.jugador.setMana(this.jugador.getMana() - CosteMana); //Aqui se actualiza el mana del jugador luego de tirar una carta
+                    addInfoJugador("Mi estado: " +"\n" +
+                            "Vida: " + jugador.getVida() + "\n" +
+                            "Maná: " + jugador.getMana() +"\n" +
+                            "En Deck: " + jugador.getMiDeck().getSize());
+                    repaint();
+                    cardsBenefits(cartaEnMano);
+                    if (this.jugador instanceof Invitado){
+                        request.sendMessage(drawedCard);
+                    }
+                    else{
+                        receiver.getHandler().sendMessage(drawedCard);
+                    }
+                } catch (IOException ioException) {
+                    ioException.printStackTrace();
                 }
-                else{
-                    receiver.getHandler().sendMessage(drawedCard);
-                }
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+                cardSHL(cardIndex);
             }
-            cardSHL(cardIndex);
+        } else{
+            //this.setEnabled(false);
         }
     }
 
@@ -277,10 +283,26 @@ public class gameWindow extends JFrame implements ActionListener {
      *metodo para mostrar la carta que el oponente tiró
      * @param receivedCard carta que el oponente tiró durante su turno
      */
-    public void showReceivedCard(Carta receivedCard){
+    public void showReceivedCard(Carta receivedCard, boolean flag){
         this.receivedCard = receivedCard;
         imageInButton(this.receivedCard.getImagePath(), this.cartaRecibida);
         cardsActions();
+        int manaAumentado = (jugador.getMana() +250);
+        if (manaAumentado > 1000){
+            this.jugador.setMana(1000);
+        } else {
+            this.jugador.setMana(manaAumentado);
+        }
+        if(receivedCard.getName().equals("Congelar")){
+            this.jugador.onGame = false;
+        }else{
+            this.jugador.onGame = flag;
+            this.setEnabled(true);
+        }
+        if(this.jugador.getVida() <= 0){
+            JOptionPane.showMessageDialog(this,"Ha perdido la partida, fin del juego");
+            this.setVisible(false);
+        }
     }
 
     /**
@@ -310,7 +332,7 @@ public class gameWindow extends JFrame implements ActionListener {
     public void cardsActions(){
         if (this.receivedCard.getType().equals("EsbirrosCartas")){
             int vidaActual = jugador.getVida();
-            jugador.setVida(vidaActual - 100);
+            jugador.setVida(vidaActual - 250);
             addInfoJugador("Mi estado: " +"\n" +
                     "Vida: " + jugador.getVida() + "\n" +
                     "Maná: " + jugador.getMana() +"\n" +
@@ -322,7 +344,7 @@ public class gameWindow extends JFrame implements ActionListener {
             }
             else if (this.receivedCard.getName().equals("Veneno")){
                 int vidaActual = jugador.getVida();
-                jugador.setVida(vidaActual - 100);
+                jugador.setVida(vidaActual - 300);
                 int CosteMana = receivedCard.getCosteMana();
                 this.jugador.setMana(this.jugador.getMana() - CosteMana);
                 addInfoJugador("Mi estado: " +"\n" +
@@ -335,6 +357,7 @@ public class gameWindow extends JFrame implements ActionListener {
 
         }
     }
+
     public void cardsBenefits(Carta dropCard) {
         int vidaAumentada = (this.jugador.getVida() + 200);
         if (dropCard.getType().equals("HechizosCartas")){
@@ -363,9 +386,17 @@ public class gameWindow extends JFrame implements ActionListener {
             else if (dropCard.getName().equals("Espejo")){
                 this.jugador.getManoCartas().getCartaListaCircular().pushFront(dropCard);
                 addCardsToButtons();
+
             }
+
         }
+        addInfoJugador("Mi estado: " +"\n" +
+                "Vida: " + jugador.getVida() + "\n" +
+                "Maná: " + jugador.getMana() +"\n" +
+                "En Deck: " + jugador.getMiDeck().getSize());
+        repaint();
 
     }
+
 }
 

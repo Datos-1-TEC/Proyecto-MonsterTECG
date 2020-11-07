@@ -73,7 +73,7 @@ public class ConnectionRequest {
             JsonNode node = Json.parse(message);
             writingJson("src/jugadas.json", node);
             this.carta = Json.fromJson(node, Carta.class);
-            this.gw.showReceivedCard(this.carta);
+            this.gw.showReceivedCard(this.carta, true);
             System.out.println(carta.getName());
         }
     }
