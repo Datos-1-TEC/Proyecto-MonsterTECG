@@ -11,12 +11,14 @@ import cr.ac.itcr.Cartas.Stack.ManoCartas;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Clase que contiene las caracteristicas de un jugador en la partida
+ */
 public class Jugador {
 
-    private String Rol;
     private int mana = 200;
     private int vida = 1000;
-    private boolean onGame = false;
+    public boolean onGame = false;
     private Deck<Carta> miDeck = new Deck<>();
     private ManoCartas manoCartas = new ManoCartas();
     public ManoCartas getManoCartas() {
@@ -27,10 +29,6 @@ public class Jugador {
         this.manoCartas = manoCartas;
     }
 
-
-    public String getRol() {return Rol; }
-
-    public void setRol(String rol) { Rol = rol; }
 
     public int getMana() { return mana; }
 
@@ -44,11 +42,16 @@ public class Jugador {
 
     public void setMiDeck(Deck miDeck) {this.miDeck = miDeck;}
 
+    /**
+     * metodo para indicar la carta que se está tirando y que forma parte de la lista circular doblemente enlazada
+     * @param position
+     * @return
+     * @throws IOException
+     */
     public String drawCard(int position) throws IOException {
         Carta drawed = getManoCartas().getCartaListaCircular().getElementAt(position);
         JsonNode cartaNode = Json.toJson(drawed);
         ObjectMapper objectMapper = new ObjectMapper();
-        //objectMapper.writeValue(new File("src/jugadas.json"),drawed);
         String card = Json.generateString(cartaNode, true);
         return card;
     }

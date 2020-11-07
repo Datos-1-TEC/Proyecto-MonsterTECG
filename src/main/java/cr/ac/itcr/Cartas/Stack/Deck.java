@@ -1,6 +1,10 @@
 package cr.ac.itcr.Cartas.Stack;
 
-
+/**
+ * Esta es una clase Deck implementada como estructura de datos Pila
+ * que almacena las cartas iniciales y que no son visibles para el jugador
+ * @param <T> tipo de elemento que habrá en la pila
+ */
 public class Deck<T> {
     private Node<T> top;
 
@@ -13,9 +17,11 @@ public class Deck<T> {
     public Deck(){
         this.top = null;
     }
+
     public boolean isEmpty(){
         return top == null;
     }
+
     public void push(T element){
         if (this.isEmpty()) {
             this.top = new Node<>(element);
@@ -26,8 +32,7 @@ public class Deck<T> {
             top = ref;
             this.size ++;
         }
-        }
-
+    }
 
     public T peek(){
         if(!isEmpty()){

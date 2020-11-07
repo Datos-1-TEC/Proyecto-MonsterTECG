@@ -1,5 +1,10 @@
 package cr.ac.itcr.Cartas.Stack;
 
+/**
+ * clase Node es utilizada para representar un elemento con sus respectivas referencias en una estructura de datos
+ * como lista o pila
+ * @param <T>
+ */
 public class Node<T> {
     public T value;
     public Node next;

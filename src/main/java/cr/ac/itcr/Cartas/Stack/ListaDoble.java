@@ -1,5 +1,9 @@
 package cr.ac.itcr.Cartas.Stack;
 
+/**
+ * Clase que se utiliza para crear una lista de elementos que estan doblemente enlazados
+ * @param <T>
+ */
 public class ListaDoble<T> {
     private Node head = null;
     private Node tail = null;
@@ -28,6 +32,7 @@ public class ListaDoble<T> {
             length ++;
         }
     }
+
     public void eliminarNodo(T Element){
         Node current = new Node();
         Node predecessor = new Node();
@@ -49,6 +54,7 @@ public class ListaDoble<T> {
             current = current.next;
         }
     }
+
     public boolean buscarNodo(T searchValue){
         Node current = new Node();
         current = head;
@@ -60,6 +66,7 @@ public class ListaDoble<T> {
         }
         return false;
     }
+
     public T getElementAt(int position){
         Node<T> current = this.head;
         Node<T> prev = null;
@@ -75,6 +82,7 @@ public class ListaDoble<T> {
 
 
     }
+
     public void print(){
         Node<T> current = this.head;
         int cont = 0;

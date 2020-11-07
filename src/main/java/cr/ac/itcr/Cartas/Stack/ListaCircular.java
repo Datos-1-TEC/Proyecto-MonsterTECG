@@ -1,16 +1,18 @@
 package cr.ac.itcr.Cartas.Stack;
 
+/**
+ * Esta clase es una estructura de datos naturaleza ListaCircular Doblemente enlazada
+ * que almacena elementos de un tipo determinado
+ * @param <T> elemento que almacena la lista
+ */
 public class ListaCircular<T> {
     private Node head = null;
     private Node tail = null;
+    private int length = -1;
 
     public int getLength() {
         return length;
     }
-
-    private int length = -1;
-
-    //Insert elements
 
     public void pushFront(T newElement){
         Node newNode = new Node();
@@ -73,8 +75,6 @@ public class ListaCircular<T> {
             position --;
         }
         return current.getValue();
-
-
     }
 
 

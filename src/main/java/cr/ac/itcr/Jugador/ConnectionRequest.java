@@ -18,6 +18,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+/**
+ * Clase que establece la conexion con el socket server para iniciar la partida de juego
+ */
 public class ConnectionRequest {
     private DataOutputStream out;
     private DataInputStream in;
@@ -27,7 +30,14 @@ public class ConnectionRequest {
 
     private Carta carta;
 
-
+    /**
+     * Constructor de la clase que recibe la direccion y el puerto a donde se establece la conexion, además recibe
+     * los datos de la partida iniciada
+     * @param ip direccion IP del serverSocket
+     * @param port puerto
+     * @param datosPartida datos de la partida iniciada con las cartas del jugador
+     * @throws IOException
+     */
     public ConnectionRequest(String ip, int port, DatosPartida datosPartida) throws IOException {
 
         Socket request = new Socket(ip, port );
@@ -48,6 +58,11 @@ public class ConnectionRequest {
         thread.start();
     }
 
+    /**
+     * Metodo para procesar las acciones que se deben realizar para determinado mensaje
+     * @param message mensaje recibido
+     * @throws IOException
+     */
     public void processMessage(String message) throws IOException {
 
         if (message.contains("%")) {
@@ -62,6 +77,11 @@ public class ConnectionRequest {
             System.out.println(carta.getName());
         }
     }
+
+    /**
+     * Enviar el String mensaje por el socket
+     * @param message mensaje a enviar
+     */
     public void sendMessage(String message) {
         try{
             out.writeUTF(message);
@@ -70,6 +90,12 @@ public class ConnectionRequest {
             e.printStackTrace();
         }
     }
+    /**
+     * Metodo que escribe en el Json de las jugadas, las cartas que se tiran en cada turno del juego
+     * @param fileName nombre del archivo donde se esta escribiendo
+     * @param cartaNode JsonNode que se usa para escribir dentro del archivo Json
+     * @throws IOException
+     */
     public void writingJson(String fileName, JsonNode cartaNode) throws IOException {
         Json cardsreader = new Json();
         String json = new String();

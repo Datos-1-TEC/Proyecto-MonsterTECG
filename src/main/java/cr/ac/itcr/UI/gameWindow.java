@@ -11,6 +11,10 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import javax.swing.ImageIcon;
 
+/**
+ * Ventana de juego donde se cargan las cartas en la mano del jugador, el estado del jugador y le permite tirar cartas
+ * y ver las que le van tirando
+ */
 public class gameWindow extends JFrame implements ActionListener {
     private Jugador jugador;
     JButton cartaManoI1 = new JButton("cartaManoI1");
@@ -31,7 +35,13 @@ public class gameWindow extends JFrame implements ActionListener {
     JButton agregarCarta = new JButton("Add Card");
     ListaDoble<JButton> listButtonCards = new ListaDoble<>();
 
-
+    /**
+     *Metodo constructor donde se agregan los contenidos de la ventana
+     * @param jugador quien se encuentra en la partida
+     * @param receiver socketServer que escucha la conexion con el oponente
+     * @param request  conexion con el anfitrion mediante el puerto ingresado
+     * @throws HeadlessException
+     */
     public gameWindow(Jugador jugador, ConnectionReceiver receiver, ConnectionRequest request) throws HeadlessException {
         this.jugador = jugador;
         this.receiver = receiver;
@@ -55,6 +65,9 @@ public class gameWindow extends JFrame implements ActionListener {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * Metodo que agrega los botones donde estan las cartas y sus respectivos action listener
+     */
     public void cartasMano() {
 
 
@@ -127,6 +140,11 @@ public class gameWindow extends JFrame implements ActionListener {
 
     }
 
+    /**
+     * Metodo para escalar la imagen en el respectivo boton
+     * @param imagePath direccion de la imagen de carta que se desea escalar
+     * @param button objeto donde se muestra la imagen escalada
+     */
     private void imageInButton(String imagePath, JButton button) {
 
         ImageIcon imageIcon;
@@ -138,11 +156,20 @@ public class gameWindow extends JFrame implements ActionListener {
         revalidate();
     }
 
+    /**
+     * Método que agrega la carta al botón respectivo segun su posición en la lista de la mano del jugador
+     * @param position posicion de la carta en la lista circular doblemente enlazada
+     * @param button oobjeto donde se muestra la imagen de la carta encontrada
+     */
     private void myPathImage(int position, JButton button) {
         String file = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(position).getImagePath();
         imageInButton(file,button);
     }
 
+    /**
+     * Metodo que agrega los botones de la mano de cartas a una lista para actualizar
+     * la imagen en cada boton
+     */
     public void addCardsToButtons(){
         int cont = 0;
         int lengthLista = this.jugador.getManoCartas().getCartaListaCircular().getLength();
@@ -165,15 +192,24 @@ public class gameWindow extends JFrame implements ActionListener {
             else{
                 button.setIcon(null);
             }
-
             cont ++;
         }
     }
 
+    /**
+     * metodo para sobrescribir el estado del jugador cada vez que hay cambios
+     * @param info datos actualizados
+     */
     public void addInfoJugador(String info){
         estadoJugador.setText(info);
     }
-    // center the jframe on screen
+
+    /**
+     * Metodo para centrar la ventana en pantalla
+     * @param frame
+     * @param width
+     * @param height
+     */
     public void centerFrame(JFrame frame,int width, int height){
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         int windowHeight = screenSize.height;
@@ -182,6 +218,11 @@ public class gameWindow extends JFrame implements ActionListener {
         frame.setLocationRelativeTo(null);
     }
 
+    /**
+     * Metodo que espera eventos en cada boton para tirar la carta que selecciona
+     * Y se manda esa carta al oponente para realizar los respectivos ataques
+     * @param e actionEvent
+     */
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getActionCommand().contains("cartaManoI")){
@@ -203,36 +244,55 @@ public class gameWindow extends JFrame implements ActionListener {
         }
     }
 
+    /**
+     * Metodo para obtener el indice donde se encuentra el boton de interes
+     * @param button
+     * @return
+     */
     public int getIndex(JButton button){
         String textoBtn = button.getText();
         int index = Integer.parseInt(textoBtn.split("I")[1]);
         return index-1;
     }
 
+    /**
+     * Metodo para actualizar las cartas en el panel de la mano segun se vayan tirando
+     * @param index indice asociado a la posicion de la carta en el boton y la posicion de esa carta en la lista circular doblemente enlazada
+     */
     public void cardSHL(int index){
         Carta cartaBorrar = this.jugador.getManoCartas().getCartaListaCircular().getElementAt(index);
         this.jugador.getManoCartas().getCartaListaCircular().deleteNode(cartaBorrar);
         addCardsToButtons();
-
     }
 
+    /**
+     *metodo para mostrar la carta que el oponente tiró
+     * @param receivedCard carta que el oponente tiró durante su turno
+     */
     public void showReceivedCard(Carta receivedCard){
         imageInButton(receivedCard.getImagePath(), this.cartaRecibida);
     }
 
+    /**
+     * Metodo para agregar cartas desde el deck a la mano del jugador
+     */
     public void addCardFromDeck(){
         this.agregarCarta.setBounds(850-20, 580, 90,30);
         this.agregarCarta.setBackground(Color.yellow);
         add(this.agregarCarta);
-        this.agregarCarta.addActionListener(e -> {
-            Carta agregar = ((Carta)jugador.getMiDeck().pop());
-            jugador.getManoCartas().getCartaListaCircular().pushFront(agregar);
-            addCardsToButtons();
-            addInfoJugador("Mi estado: " +"\n" +
-                    "Vida: " + jugador.getVida() + "\n" +
-                    "Maná: " + jugador.getMana() +"\n" +
-                    "En Deck: " + jugador.getMiDeck().getSize());
 
+        this.agregarCarta.addActionListener(e -> {
+            if(jugador.getMiDeck().getSize()>0){
+                Carta agregar = ((Carta)jugador.getMiDeck().pop());
+                jugador.getManoCartas().getCartaListaCircular().pushFront(agregar);
+                addCardsToButtons();
+                addInfoJugador("Mi estado: " +"\n" +
+                        "Vida: " + jugador.getVida() + "\n" +
+                        "Maná: " + jugador.getMana() +"\n" +
+                        "En Deck: " + jugador.getMiDeck().getSize());
+            }
+            else {
+                JOptionPane.showMessageDialog(this, "Ya no posee más cartas en el deck");}
         });
     }
 }

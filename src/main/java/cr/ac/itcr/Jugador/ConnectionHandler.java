@@ -5,6 +5,9 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
 
+/**
+ * Esta clase se utiliza como intermediario que es capaz de comunicar al receiver y al request para recibir y enviar mensajes
+ */
 public class ConnectionHandler {
     Socket socket;
     boolean flag = true;
@@ -12,6 +15,12 @@ public class ConnectionHandler {
     DataInputStream in;
     ConnectionReceiver receiver;
 
+    /**
+     * Constructor que inicia el hilo de ejecución para el correcto flujo de mensajes
+     * @param socket
+     * @param receiver
+     * @throws IOException
+     */
     public ConnectionHandler(Socket socket, ConnectionReceiver receiver) throws IOException {
         this.socket = socket;
         this.out = new DataOutputStream(socket.getOutputStream());

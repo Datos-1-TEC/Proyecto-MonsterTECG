@@ -10,6 +10,11 @@ import java.io.IOException;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 
+/**
+ * Esta clase se encarga de cargar las ventanas para inicializar la partida de los
+ * jugadores una vez que ingresan al juego.
+ *
+ */
 public class Window extends JFrame {
     JButton getIPButton = new JButton("getIP");
     JTextArea areaIP = new JTextArea();
@@ -25,28 +30,22 @@ public class Window extends JFrame {
     ConnectionRequest request;
     Jugador oponente = new Jugador();
 
-    public Anfitrion getAnfitrionPartida() {
-        return anfitrionPartida;
-    }
-
-    public Invitado getInvitadoPartida() {
-        return invitadoPartida;
-    }
-
-
 
     public Window() throws HeadlessException {
         settingRole();
         setTitle("Anfitrion info");
-        setBounds(100,100, 500, 500);
+        setBounds(100, 100, 500, 500);
         setLayout(null);
         setVisible(true);
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
+    /**
+     * En este método se selecciona el rol que se desea tener: anfitrion o invitado.
+     */
     public void settingRole() {
-        rol.setBounds(100, 20,75, 30);
+        rol.setBounds(100, 20, 75, 30);
         rol.setBackground(Color.WHITE);
         rol.setEditable(false);
 
@@ -67,7 +66,11 @@ public class Window extends JFrame {
             setLoginInvitado();
         });
     }
-    public void widgetAnfitrion(){
+
+    /**
+     * En este método se retorna la IP del anfitrion de la partida para que pueda ingresar.
+     */
+    public void widgetAnfitrion() {
         this.repaint();
         getIPButton.setBounds(100, 180, 100, 30);
         getIPButton.setBackground(Color.orange);
@@ -90,21 +93,27 @@ public class Window extends JFrame {
         setLoginAnfitrion();
     }
 
-
-    public void setAnfitrion(){
+    /**
+     * Metodo que despliega los espacios correspondientes para agregar la informacion de la partida.
+     */
+    public void setAnfitrion() {
         JLabel infoIP = new JLabel("Ingrese IP:");
-        infoIP.setBounds(50,250, 70, 20 );
+        infoIP.setBounds(50, 250, 70, 20);
         JLabel infoPort = new JLabel("Ingrese Puerto:");
-        infoPort.setBounds(190,250, 90, 20 );
+        infoPort.setBounds(190, 250, 90, 20);
 
-        addIP.setBounds(50, 270,90, 30);
+        addIP.setBounds(50, 270, 90, 30);
         addPort.setBounds(190, 270, 70, 30);
         add(addIP);
         add(addPort);
         add(infoIP);
         add(infoPort);
     }
-    public void setLoginAnfitrion(){
+
+    /**
+     * Metodo para hacer valido el log in del anfitrion.
+     */
+    public void setLoginAnfitrion() {
         loginAnfitrion.setBounds(100, 300, 90, 30);
         loginAnfitrion.setBackground(Color.orange);
         add(loginAnfitrion);
@@ -126,11 +135,14 @@ public class Window extends JFrame {
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            System.out.println("IP de partida: "+ addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
+            System.out.println("IP de partida: " + addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
         });
 
     }
 
+    /**
+     * Metodo para hacer valido el log in del invitado.
+     */
     public void setLoginInvitado() {
         loginAnfitrion.setBounds(100, 300, 90, 30);
         loginAnfitrion.setBackground(Color.orange);
@@ -144,9 +156,7 @@ public class Window extends JFrame {
                 DatosPartida datosPartida = new DatosPartida(this.invitadoPartida, this.oponente);
                 String cartasNombre = datosPartida.cartasPropias();
                 request = new ConnectionRequest(this.invitadoPartida.getServerIP(), this.invitadoPartida.getServerPort(), datosPartida);
-
                 gameWindow gw = new gameWindow(this.invitadoPartida, receiver = null, request);
-
                 request.setGw(gw);
 
                 request.getOut().writeUTF(cartasNombre);
@@ -158,9 +168,5 @@ public class Window extends JFrame {
             System.out.println("IP de partida: " + addIP.getText() + " Puerto: " + Integer.parseInt(addPort.getText()));
         });
 
-    }
-
-    public static void main (String[] args){
-        Window window = new Window();
     }
 }

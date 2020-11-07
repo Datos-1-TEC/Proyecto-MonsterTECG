@@ -9,24 +9,30 @@ import cr.ac.itcr.Cartas.Json;
 import cr.ac.itcr.Cartas.Stack.ListaDoble;
 import cr.ac.itcr.UI.DatosPartida;
 import cr.ac.itcr.UI.gameWindow;
-
 import java.io.*;
 import java.net.*;
-import java.util.HashMap;
-import java.util.Set;
 
+/**
+ *
+ */
 public class ConnectionReceiver {
     Anfitrion anfitrion;
     Boolean flag = true;
     DataInputStream in;
     DataOutputStream out;
-    private HashMap<String, ConnectionHandler> usuarios = new HashMap<>();
     DatosPartida datosPartida;
     private ConnectionHandler handler;
     gameWindow gw;
 
     private Carta carta;
 
+    /**
+     * Constructor que lleva el hilo de ejecucion durante la partida que se inicializó en el socketServer
+     * @param anfitrion quien abrió la partida
+     * @param cartasNombre nombre de cartas creadas
+     * @param datosPartida detos de la partida del jugador
+     * @throws IOException
+     */
     public ConnectionReceiver(Anfitrion anfitrion, String cartasNombre, DatosPartida datosPartida) throws IOException {
         this.anfitrion = anfitrion;
         this.datosPartida = datosPartida;
@@ -47,6 +53,13 @@ public class ConnectionReceiver {
         thread.start();
     }
 
+    /**
+     * Metodo que procesa la informacion recibida en una partida mediante sockets
+     * @param socket socket en que se da la conexion
+     * @param cartasNombre nombre de las cartas que se comunican
+     * @param datosPartida datos de la partida con la info de jugador
+     * @throws IOException
+     */
     public void processConnection(Socket socket, String cartasNombre, DatosPartida datosPartida) throws IOException {
         in = new DataInputStream(socket.getInputStream());
         String incomingCard = in.readUTF();
@@ -56,6 +69,11 @@ public class ConnectionReceiver {
         handler.sendMessage(cartasNombre);
     }
 
+    /**
+     * Metodo para procesar las acciones que se deben realizar para determinado mensaje
+     * @param message mensaje recibido
+     * @throws IOException
+     */
     public void processMessage (String message) throws IOException {
 
         System.out.println("Processing message: " + message );
@@ -66,18 +84,12 @@ public class ConnectionReceiver {
 
     }
 
-    //Lee las jugadas en el archivo de Json jugadas.json
-    public ListaDoble<JsonNode> readNodes(String fileName) throws JsonProcessingException {
-        ListaDoble<JsonNode> listaNodos = new ListaDoble<>();
-        JsonNode nodoJugadas =  Json.parse(fileName);
-        int cont = 1;
-        while (nodoJugadas.get("Jugadas").get(cont) != null ){
-            listaNodos.ingresarNodo(nodoJugadas.get("Jugadas").get(cont));
-            cont ++;
-        }
-        return listaNodos;
-    }
-
+    /**
+     * Metodo que escribe en el Json de las jugadas, las cartas que se tiran en cada turno del juego
+     * @param fileName nombre del archivo donde se esta escribiendo
+     * @param cartaNode JsonNode que se usa para escribir dentro del archivo Json
+     * @throws IOException
+     */
     public void writingJson(String fileName, JsonNode cartaNode) throws IOException {
         Json cardsreader = new Json();
         String json = new String();

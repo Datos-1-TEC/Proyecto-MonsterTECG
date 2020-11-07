@@ -1,6 +1,9 @@
 package cr.ac.itcr.Cartas;
 import java.io.Serializable;
 
+/**
+ * Objeto carta que es usado por los jugadores en cada turno
+ */
 public class Carta implements Serializable {
 
     private String type;
@@ -45,17 +48,8 @@ public class Carta implements Serializable {
     }
 
     public Carta() {
-        getType();
-        getName();
-        getAction();
-        getCosteMana();
     }
 
-
-
-
-
-    //private String type;
 
 
 
