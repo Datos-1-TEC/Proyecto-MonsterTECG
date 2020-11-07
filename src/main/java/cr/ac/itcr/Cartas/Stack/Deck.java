@@ -40,8 +40,7 @@ public class Deck<T> {
         }
         return null;
     }
-
-
+    
     public T pop(){
         Node<T> temp ;
 
