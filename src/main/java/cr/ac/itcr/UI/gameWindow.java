@@ -316,8 +316,55 @@ public class gameWindow extends JFrame implements ActionListener {
                     "Maná: " + jugador.getMana() +"\n" +
                     "En Deck: " + jugador.getMiDeck().getSize());
             repaint();
-        }
+        } else if (this.receivedCard.getType().equals("HechizosCartas")){
+            if (this.receivedCard.getName().equals("Congelar")){
+                System.out.println("codigo para saltar turno de jugador");
+            }
+            else if (this.receivedCard.getName().equals("Veneno")){
+                int vidaActual = jugador.getVida();
+                jugador.setVida(vidaActual - 100);
+                int CosteMana = receivedCard.getCosteMana();
+                this.jugador.setMana(this.jugador.getMana() - CosteMana);
+                addInfoJugador("Mi estado: " +"\n" +
+                        "Vida: " + jugador.getVida() + "\n" +
+                        "Maná: " + jugador.getMana() +"\n" +
+                        "En Deck: " + jugador.getMiDeck().getSize());
+                repaint();
 
+            }
+
+        }
+    }
+    public void cardsBenefits(Carta dropCard) {
+        int vidaAumentada = (this.jugador.getVida() + 200);
+        if (dropCard.getType().equals("HechizosCartas")){
+            if (dropCard.getName().equals("Curar")){
+                if (vidaAumentada > 1000){
+                    this.jugador.setVida(1000);
+                } else {
+                    this.jugador.setVida(vidaAumentada);
+                }
+            }
+            else if (dropCard.getName().equals("Poder supremo")){
+                System.out.println("Puede tirar tres cartas en el mismo turno");
+            }
+            else if (dropCard.getName().equals("Robar carta")){
+                System.out.println("Perdio carta");
+            }
+            else if (dropCard.getName().equals("Dinero facil")){
+                int manaAumentado = (jugador.getMana() * 2);
+                if (manaAumentado > 1000){
+                    this.jugador.setMana(1000);
+                } else {
+                    this.jugador.setMana(manaAumentado);
+                }
+
+            }
+            else if (dropCard.getName().equals("Espejo")){
+                this.jugador.getManoCartas().getCartaListaCircular().pushFront(dropCard);
+                addCardsToButtons();
+            }
+        }
 
     }
 }
