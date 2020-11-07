@@ -34,6 +34,7 @@ public class gameWindow extends JFrame implements ActionListener {
     ConnectionRequest request;
     JButton agregarCarta = new JButton("Add Card");
     ListaDoble<JButton> listButtonCards = new ListaDoble<>();
+    Carta receivedCard = new Carta();
 
     /**
      *Metodo constructor donde se agregan los contenidos de la ventana
@@ -231,6 +232,13 @@ public class gameWindow extends JFrame implements ActionListener {
             imageInButton(cartaEnMano.getImagePath(), cartaTirada);
             try {
                 String drawedCard = this.jugador.drawCard(cardIndex);
+                int CosteMana = cartaEnMano.getCosteMana();
+                this.jugador.setMana(this.jugador.getMana() - CosteMana); //Aqui se actualiza el mana del jugador luego de tirar una carta
+                addInfoJugador("Mi estado: " +"\n" +
+                        "Vida: " + jugador.getVida() + "\n" +
+                        "Maná: " + jugador.getMana() +"\n" +
+                        "En Deck: " + jugador.getMiDeck().getSize());
+                repaint();
                 if (this.jugador instanceof Invitado){
                     request.sendMessage(drawedCard);
                 }
@@ -270,7 +278,9 @@ public class gameWindow extends JFrame implements ActionListener {
      * @param receivedCard carta que el oponente tiró durante su turno
      */
     public void showReceivedCard(Carta receivedCard){
-        imageInButton(receivedCard.getImagePath(), this.cartaRecibida);
+        this.receivedCard = receivedCard;
+        imageInButton(this.receivedCard.getImagePath(), this.cartaRecibida);
+        cardsActions();
     }
 
     /**
@@ -290,10 +300,25 @@ public class gameWindow extends JFrame implements ActionListener {
                         "Vida: " + jugador.getVida() + "\n" +
                         "Maná: " + jugador.getMana() +"\n" +
                         "En Deck: " + jugador.getMiDeck().getSize());
+                repaint();
             }
             else {
                 JOptionPane.showMessageDialog(this, "Ya no posee más cartas en el deck");}
         });
+    }
+
+    public void cardsActions(){
+        if (this.receivedCard.getType().equals("EsbirrosCartas")){
+            int vidaActual = jugador.getVida();
+            jugador.setVida(vidaActual - 100);
+            addInfoJugador("Mi estado: " +"\n" +
+                    "Vida: " + jugador.getVida() + "\n" +
+                    "Maná: " + jugador.getMana() +"\n" +
+                    "En Deck: " + jugador.getMiDeck().getSize());
+            repaint();
+        }
+
+
     }
 }
 
